@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:layout_margin="8dp"
-             tools:context=".CardListFragment">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_margin="8dp"
+              android:orientation="vertical"
+              tools:context=".CardListFragment">
 
+    <TextView
+            android:id="@+id/cardlist_character_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:text="@string/seoni_name"
+    />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:paddingTop="8dp"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/black"
+            android:text="@string/powers"
+    />
+
+    <TextView
+            android:id="@+id/cardlist_character_powers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:text="@string/seoni_powers"
+    />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/black"
+            android:paddingTop="8dp"
+            android:text="@string/cards"
+    />
     <android.support.v7.widget.RecyclerView
             android:id="@+id/cardlistfragment_rv"
             android:layout_width="match_parent"
+            android:paddingTop="8dp"
             android:layout_height="match_parent"/>
 
-</FrameLayout>
+</LinearLayout>

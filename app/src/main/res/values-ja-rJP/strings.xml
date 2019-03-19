@@ -44,4 +44,9 @@
         このカードをdiscard,　だれかのcheckに+1d6.\n\nこのカードをdiscard,　だれかのcombatのStrengthかDexterity checkに+2d6.\n\nこのカードを使った後,
         blessings discard pileの上のカードがcorruptedなら、handの1枚discard.
     </string>
+    <string name="seoni_powers">Combat checkの前、handの1枚をdiscardして、discard pileからArcaneの1枚をdrawしてよい.\n\nAttack spell
+        をrechargeしようとする時は自動成功。\n\nAllyゲットしたら、1枚drawしてよい。
+    </string>
+    <string name="powers">能力：</string>
+    <string name="cards">カード：</string>
 </resources>
