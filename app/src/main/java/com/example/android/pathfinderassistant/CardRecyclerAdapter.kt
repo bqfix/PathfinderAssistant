@@ -43,6 +43,11 @@ class CardRecyclerAdapter internal constructor(private val cardClickHandler : Ca
         return if (mCards == null) 0 else mCards!!.size
     }
 
+    fun updateCards(cards : List<Card>) {
+        mCards = cards
+        notifyDataSetChanged()
+    }
+
     interface CardClickHandler {
         fun onItemClick(card:Card)
     }

@@ -1,22 +1,32 @@
 package com.example.android.pathfinderassistant
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_card_list.*
+import kotlinx.android.synthetic.main.fragment_card_list.view.*
 
 
 private const val ARG_CARDS = "cards"
+private const val ARG_ISTWOPANE = "is_two_pane"
+const val CARD_KEY = "card_key"
 
-class CardListFragment : Fragment() {
-    private var cards: List<Card>? = null
+class CardListFragment : Fragment(), CardRecyclerAdapter.CardClickHandler {
+    private var cards : List<Card>? = null
+    private var isTwoPane : Boolean = false
+    private var twoPaneClickListener : TwoPaneItemClickListener? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             cards = it.getParcelableArrayList(ARG_CARDS)
+            isTwoPane = it.getBoolean(ARG_ISTWOPANE)
         }
     }
 
@@ -25,17 +35,49 @@ class CardListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_card_list, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_card_list, container, false)
+
+        val layoutManager = LinearLayoutManager(rootView.context, LinearLayoutManager.VERTICAL, false)
+        val recyclerAdapter = CardRecyclerAdapter(this)
+        val cardListRecyclerView = rootView.cardlistfragment_rv
+        cardListRecyclerView.layoutManager = layoutManager
+        cardListRecyclerView.adapter = recyclerAdapter
+
+        recyclerAdapter.updateCards(cards!!)
+
+        return rootView
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        twoPaneClickListener = context as TwoPaneItemClickListener
     }
 
 
     companion object {
         @JvmStatic
-        fun newInstance(cards : ArrayList<Card>) =
+        fun newInstance(cards : ArrayList<Card>, isTwoPane : Boolean) =
             CardListFragment().apply {
                 arguments = Bundle().apply {
                     putParcelableArrayList(ARG_CARDS, cards)
+                    putBoolean(ARG_ISTWOPANE, isTwoPane)
                 }
             }
+    }
+
+    override fun onItemClick(card: Card) {
+        //Open new activity using clicked card if not two-pane
+        if (!isTwoPane) {
+            val intent = Intent(activity, CardDetailActivity::class.java)
+            intent.putExtra(CARD_KEY, card)
+            startActivity(intent)
+        } else { //Pass the click event to the CardListActivity to be handled
+            twoPaneClickListener!!.onItemClick(card)
+        }
+
+    }
+
+    interface TwoPaneItemClickListener {
+        fun onItemClick(card:Card)
     }
 }

@@ -4,17 +4,18 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_card_list.*
 
-class CardListActivity : AppCompatActivity() {
+class CardListActivity : AppCompatActivity(), CardListFragment.TwoPaneItemClickListener {
 
-    //A boolean to check if two-pane mode should be used
     var isTwoPane : Boolean = false
+    var cardListFragment : CardListFragment? = null
+    var cardDetailFragment : CardDetailFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_card_list)
 
         //Initialize a deck of cards
-        val deck = listOf(Card(getString(R.string.dazzle_name), getString(R.string.dazzle_descrip)),
+        val deck = arrayListOf(Card(getString(R.string.dazzle_name), getString(R.string.dazzle_descrip)),
             Card(getString(R.string.frigid_blast_name), getString(R.string.frigid_blast_descrip)),
             Card(getString(R.string.fiery_glare_name), getString(R.string.fiery_glare_descrip)),
             Card(getString(R.string.lightning_touch_name), getString(R.string.lightning_touch_descrip)),
@@ -30,5 +31,17 @@ class CardListActivity : AppCompatActivity() {
 
         //Check if in two-pane mode by seeing if the detail container has been inflated
         isTwoPane = (cardlist_detailfragment_container != null)
+
+        //Populate card list
+        if (cardListFragment == null) {
+            cardListFragment = CardListFragment.newInstance(deck, isTwoPane)
+        }
+        supportFragmentManager.beginTransaction().replace(R.id.cardlist_listfragment_container, cardListFragment!!).commit()
     }
+
+    override fun onItemClick(card: Card) {
+        cardDetailFragment = CardDetailFragment.newInstance(card)
+        supportFragmentManager.beginTransaction().replace(R.id.cardlist_detailfragment_container, cardDetailFragment!!).commit()
+    }
+
 }
