@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+             android:layout_margin="8dp"
+              android:orientation="vertical"
              tools:context=".CardDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
 
-</FrameLayout>
+    <TextView
+            android:id="@+id/carddetailfragment_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            tools:text="Frigid Blast"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+    />
+
+    <TextView
+            android:id="@+id/carddetailfragment_descrip_tv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingTop="16dp"
+            android:textColor="@android:color/black"
+            tools:text="For your combat check, discard this card to use your Arcane or Divine skill +2d4.\n\nAfter playing this card, if you do not have either the Arcane or Divine skill, banish it; otherwise, you may succeed at an Arcane 6 or Divine 8 check to recharge this card instead of discarding it."
+    />
+
+</LinearLayout>

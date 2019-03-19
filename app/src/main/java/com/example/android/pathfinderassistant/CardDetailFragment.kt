@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_card_detail.*
 
 
 private const val ARG_CARD = "card"
@@ -24,7 +25,12 @@ class CardDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_card_detail, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_card_detail, container, false)
+
+        carddetailfragment_name_tv.setText(card!!.name)
+        carddetailfragment_descrip_tv.setText(card!!.description)
+
+        return rootView
     }
 
 

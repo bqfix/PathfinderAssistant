@@ -2,8 +2,12 @@ package com.example.android.pathfinderassistant
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_card_list.*
 
 class CardListActivity : AppCompatActivity() {
+
+    //A boolean to check if two-pane mode should be used
+    var isTwoPane : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,5 +27,8 @@ class CardListActivity : AppCompatActivity() {
             Card(getString(R.string.apprentice_name), getString(R.string.apprentice_descrip)),
             Card(getString(R.string.blessing_of_ascension_name), getString(R.string.blessing_of_ascension_descrip)),
             Card(getString(R.string.blessing_of_shax_name), getString(R.string.blessing_of_shax_descrip)))
+
+        //Check if in two-pane mode by seeing if the detail container has been inflated
+        isTwoPane = (cardlist_detailfragment_container != null)
     }
 }
