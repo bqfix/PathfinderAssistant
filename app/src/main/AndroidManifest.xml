@@ -20,7 +20,8 @@
                 android:name=".CardDetailActivity"
                 android:parentActivityName=".CardListActivity">
         </activity>
-        <activity android:name=".DiceActivity">
+        <activity android:name=".DiceActivity"
+        android:parentActivityName=".CardListActivity">
         </activity>
     </application>
 

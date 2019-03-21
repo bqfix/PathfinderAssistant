@@ -93,6 +93,7 @@
     <string name="reset">Reset</string>
     <string name="roll">Roll Dice</string>
     <string name="total">Total:</string>
+    <string name="cannot_decrement_error">Number must be larger than 0.</string>
 
     <!-- Attributions -->
     <string name="dice_icon_source" translatable="false">https://www.kisspng.com/png-computer-icons-clip-art-dice-icon-5720498/</string>
