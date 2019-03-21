@@ -81,6 +81,7 @@
     </string>
 
     <!-- DiceActivity -->
+    <string name="dice_menu">Dice</string>
     <string name="d4" translatable="false">d4:</string>
     <string name="d6" translatable="false">d6:</string>
     <string name="d8" translatable="false">d8:</string>

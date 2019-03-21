@@ -6,7 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".DiceActivity"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/colorBackground">
 
 
     <LinearLayout
@@ -35,8 +36,8 @@
 
         <Button
                 android:id="@+id/d4_minus_button"
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:text="@string/minus"/>
 
         <EditText
@@ -49,8 +50,8 @@
 
         <Button
                 android:id="@+id/d4_plus_button"
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:text="@string/plus"/>
     </LinearLayout>
     <LinearLayout
@@ -79,8 +80,8 @@
 
         <Button
                 android:id="@+id/d6_minus_button"
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:text="@string/minus"/>
 
         <EditText
@@ -93,8 +94,8 @@
 
         <Button
                 android:id="@+id/d6_plus_button"
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:text="@string/plus"/>
     </LinearLayout>
 
@@ -123,8 +124,8 @@
 
         <Button
                 android:id="@+id/d8_minus_button"
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:text="@string/minus"/>
 
         <EditText
@@ -137,8 +138,8 @@
 
         <Button
                 android:id="@+id/d8_plus_button"
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:text="@string/plus"/>
     </LinearLayout>
 
@@ -166,8 +167,8 @@
 
         <Button
                 android:id="@+id/d10_minus_button"
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:text="@string/minus"/>
 
         <EditText
@@ -180,8 +181,8 @@
 
         <Button
                 android:id="@+id/d10_plus_button"
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:text="@string/plus"/>
     </LinearLayout>
     <LinearLayout
@@ -208,8 +209,8 @@
 
         <Button
                 android:id="@+id/d12_minus_button"
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:text="@string/minus"/>
 
         <EditText
@@ -222,8 +223,8 @@
 
         <Button
                 android:id="@+id/d12_plus_button"
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:text="@string/plus"/>
     </LinearLayout>
     <LinearLayout
@@ -250,8 +251,8 @@
 
         <Button
                 android:id="@+id/d20_minus_button"
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:text="@string/minus"/>
 
         <EditText
@@ -264,8 +265,8 @@
 
         <Button
                 android:id="@+id/d20_plus_button"
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:text="@string/plus"/>
     </LinearLayout>
     <android.support.constraint.Guideline
