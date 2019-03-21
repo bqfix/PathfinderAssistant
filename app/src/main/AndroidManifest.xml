@@ -16,8 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".CardDetailActivity"
-        android:parentActivityName=".CardListActivity">
+        <activity
+                android:name=".CardDetailActivity"
+                android:parentActivityName=".CardListActivity">
+        </activity>
+        <activity android:name=".DiceActivity">
         </activity>
     </application>
 
