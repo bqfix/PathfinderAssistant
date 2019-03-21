@@ -21,7 +21,8 @@
                 android:parentActivityName=".CardListActivity">
         </activity>
         <activity android:name=".DiceActivity"
-        android:parentActivityName=".CardListActivity">
+        android:parentActivityName=".CardListActivity"
+        android:windowSoftInputMode="stateHidden">
         </activity>
     </application>
 

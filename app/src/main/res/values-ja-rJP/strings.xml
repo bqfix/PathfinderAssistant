@@ -49,4 +49,9 @@
     </string>
     <string name="powers">能力：</string>
     <string name="cards">カード：</string>
+    <string name="dice_menu">ダイス</string>
+    <string name="reset">リセット</string>
+    <string name="roll">ダイスを振る</string>
+    <string name="total">"トータル： "</string>
+    <string name="cannot_decrement_error">0以上にしてください。</string>
 </resources>
