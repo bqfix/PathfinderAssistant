@@ -1,5 +1,7 @@
 package com.example.android.pathfinderassistant.characters
 
+import com.example.android.pathfinderassistant.deck.Card
+
 //A standard character to use as a parent for each derivative character
 abstract class BaseCharacter(
     val characterName: String,
@@ -37,7 +39,8 @@ abstract class BaseCharacter(
     val maxBlessings : Int,
     val minBlessings: Int,
     var currentBlessings: Int,
-    var proficiencies: List<String>
+    var proficiencies: List<String>,
+    var deck : ArrayList<Card>
     ) {
 
     //A class that should implement UI changes and variable changes when subclassName is changed

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+            android:id="@+id/action_launch_dice"
+            android:title="@string/dice_menu"
+            app:showAsAction="ifRoom"
+            android:icon="@drawable/white_dice_icon"/>
+
+    <item
+            android:id="@+id/action_launch_card"
+            android:title="@string/card_menu"
+            app:showAsAction="always"
+            android:icon="@drawable/white_card_icon"/>
+
+</menu>

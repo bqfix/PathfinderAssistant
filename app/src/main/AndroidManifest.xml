@@ -9,20 +9,30 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".deck.CardListActivity">
+        <activity
+                android:name=".deck.CardListActivity"
+                android:parentActivityName=".CharacterSummaryActivity"
+                android:launchMode="singleTop">
+        </activity>
+        <activity
+                android:name=".deck.CardDetailActivity"
+                android:parentActivityName=".deck.CardListActivity"
+                android:launchMode="singleTop">
+        </activity>
+        <activity
+                android:name=".DiceActivity"
+                android:parentActivityName=".deck.CardListActivity"
+                android:windowSoftInputMode="stateHidden"
+                android:launchMode="singleTop">
+        </activity>
+        <activity
+                android:name=".CharacterSummaryActivity"
+                android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-        <activity
-                android:name=".deck.CardDetailActivity"
-                android:parentActivityName=".deck.CardListActivity">
-        </activity>
-        <activity android:name=".DiceActivity"
-        android:parentActivityName=".deck.CardListActivity"
-        android:windowSoftInputMode="stateHidden">
         </activity>
     </application>
 

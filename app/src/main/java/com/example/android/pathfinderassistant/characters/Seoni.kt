@@ -1,5 +1,7 @@
 package com.example.android.pathfinderassistant.characters
 
+import com.example.android.pathfinderassistant.deck.Card
+
 val SUBCLASS_SORCEROR_ID = 0
 val SUBCLASS_ELEMENTAL_MASTER_ID = 1
 val SUBCLASS_CORRUPTOR_ID = 2
@@ -43,7 +45,8 @@ class Seoni() : BaseCharacter(
     maxBlessings = 6,
     minBlessings = 4,
     currentBlessings = 4,
-    proficiencies = listOf()
+    proficiencies = listOf(),
+    deck = arrayListOf<Card>()
 ) {
     override fun changeSubclass(subclassNumber: Int) {
         when (subclassNumber) {
