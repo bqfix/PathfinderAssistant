@@ -9,7 +9,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".CardListActivity">
+        <activity android:name=".deck.CardListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -17,11 +17,11 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".CardDetailActivity"
-                android:parentActivityName=".CardListActivity">
+                android:name=".deck.CardDetailActivity"
+                android:parentActivityName=".deck.CardListActivity">
         </activity>
         <activity android:name=".DiceActivity"
-        android:parentActivityName=".CardListActivity"
+        android:parentActivityName=".deck.CardListActivity"
         android:windowSoftInputMode="stateHidden">
         </activity>
     </application>

@@ -1,11 +1,12 @@
-package com.example.android.pathfinderassistant
+package com.example.android.pathfinderassistant.deck
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_card_detail.*
+import com.example.android.pathfinderassistant.DiceActivity
+import com.example.android.pathfinderassistant.R
 
 class CardDetailActivity : AppCompatActivity() {
 
@@ -22,7 +23,8 @@ class CardDetailActivity : AppCompatActivity() {
 
         //Setup fragment
         if (detailFragment == null) {
-            detailFragment = CardDetailFragment.newInstance(card!!)
+            detailFragment =
+                    CardDetailFragment.newInstance(card!!)
         }
         supportFragmentManager.beginTransaction().replace(R.id.carddetail_detailfragment_container, detailFragment!!).commit()
     }

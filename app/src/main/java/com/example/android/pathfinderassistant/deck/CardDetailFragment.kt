@@ -1,11 +1,11 @@
-package com.example.android.pathfinderassistant
+package com.example.android.pathfinderassistant.deck
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_card_detail.*
+import com.example.android.pathfinderassistant.R
 import kotlinx.android.synthetic.main.fragment_card_detail.view.*
 
 

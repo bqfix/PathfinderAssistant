@@ -1,4 +1,4 @@
-package com.example.android.pathfinderassistant
+package com.example.android.pathfinderassistant.deck
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

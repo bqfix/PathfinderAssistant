@@ -5,7 +5,7 @@
               android:layout_height="match_parent"
               android:layout_margin="8dp"
               android:orientation="vertical"
-              tools:context=".CardListFragment">
+              tools:context=".deck.CardListFragment">
 
     <TextView
             android:id="@+id/cardlist_character_name"

@@ -1,10 +1,11 @@
-package com.example.android.pathfinderassistant
+package com.example.android.pathfinderassistant.deck
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.example.android.pathfinderassistant.R
 import kotlinx.android.synthetic.main.card_recycler_item.view.*
 
 class CardRecyclerAdapter internal constructor(private val cardClickHandler : CardClickHandler) : RecyclerView.Adapter<CardRecyclerAdapter.CardViewHolder>() {
@@ -49,6 +50,6 @@ class CardRecyclerAdapter internal constructor(private val cardClickHandler : Ca
     }
 
     interface CardClickHandler {
-        fun onItemClick(card:Card)
+        fun onItemClick(card: Card)
     }
 }

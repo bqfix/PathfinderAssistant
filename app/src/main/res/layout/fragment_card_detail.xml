@@ -5,7 +5,7 @@
              android:layout_height="match_parent"
              android:layout_margin="8dp"
               android:orientation="vertical"
-             tools:context=".CardDetailFragment">
+             tools:context=".deck.CardDetailFragment">
 
 
     <TextView
