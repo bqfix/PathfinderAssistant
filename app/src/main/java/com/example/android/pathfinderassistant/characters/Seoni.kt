@@ -2,65 +2,142 @@ package com.example.android.pathfinderassistant.characters
 
 import com.example.android.pathfinderassistant.deck.Card
 
-val SUBCLASS_SORCEROR_ID = 0
-val SUBCLASS_ELEMENTAL_MASTER_ID = 1
-val SUBCLASS_CORRUPTOR_ID = 2
-val SUBCLASS_SORCEROR_NAME = "Sorceror"
-val SUBCLASS_ELEMENTAL_MASTER_NAME = "Elemental Master"
-val SUBCLASS_CORRUPTOR_NAME = "Corruptor"
+const val SEONI_KEY = "seoni_key"
+const val SEONI_SORCERESS_ID = 0
+const val SEONI_ELEMENTAL_MASTER_ID = 1
+const val SEONI_CORRUPTOR_ID = 2
+const val SEONI_SORCERESS_NAME = "SORCERESS"
+const val SEONI_ELEMENTAL_MASTER_NAME = "Elemental Master"
+const val SEONI_CORRUPTOR_NAME = "Corruptor"
+val SEONI_SORCERESS_POWERS = listOf(
+    listOf("Before your combat check, you may discard a card to draw a card that has the Arcane trait from your discard pile.",
+        "Before your combat check, you may discard a card to draw a card that has the Arcane or Magic trait from your discard pile."),
+    listOf("You may automatically succeed at your check to recharge a spell that has the Attack trait.",
+        "You may automatically succeed at your check to recharge a spell or an item that has the Attack trait."),
+    listOf("When you acquire an ally, you may draw a card.",
+        "When you acquire an ally or a spell, you may draw a card.")
+)
+val SEONI_ELEMENTAL_MASTER_POWERS = listOf(
+    listOf("For your power feat, you may check any 1 of the traits below. That trait applies in any power that uses the word \"mastered.\""),
+    listOf("-","Acid"),
+    listOf("-","Cold"),
+    listOf("-","Electricity"),
+    listOf("-","Fire"),
+    listOf("-","You may add 1 mastered trait to your check."),
+    listOf("Before your combat check, you may discard a card to draw a card that has the Arcane or mastered trait from your discard pile.",
+        "Before your combat check, you may discard a card to draw a card that has the Arcane or Magic or mastered trait from your discard pile."),
+    listOf("You may automatically succeed at your check to recharge a spell that has the Attack or mastered trait.",
+        "You may automatically succeed at your check to recharge a spell or an item that has the Attack or mastered trait."),
+    listOf("When you acquire a card that has a mastered trait or an ally, you may draw a card.",
+        "When you acquire a card that has a mastered trait or an ally or a spell, you may draw a card."),
+    listOf("-","Add 4 to your check that has a mastered trait."),
+    listOf("Reduce damage of a mastered type dealt to you by 2.",
+        "Reduce damage of a mastered type dealt to you by 4.")
+)
+val SEONI_CORRUPTOR_POWERS = listOf(
+    listOf("Before your combat check, you may discard a card to draw a card that has the Arcane trait from your discard pile.",
+        "Before your combat check, you may discard a card to draw a card that has the Arcane or Magic trait from your discard pile.",
+        "Before your combat check, you may discard a card to draw a card that has the Arcane or Corrupted trait from your discard pile.",
+        "Before your combat check, you may discard a card to draw a card that has the Arcane, Magic, or Corrupted trait from your discard pile."),
+    listOf("You may automatically succeed at your check to recharge a spell that has the Attack trait.",
+        "You may automatically succeed at your check to recharge a spell or an item that has the Attack trait."),
+    listOf("When you acquire an ally, you may draw a card.",
+        "When you acquire an ally or a spell, you may draw a card.",
+        "When you acquire an ally or a card that has the Corrupted trait, you may draw a card.",
+        "When you acquire an ally, a spell, or a card that has the Corrupted trait, you may draw a card."),
+    listOf("-",
+        "You may treat a card in your hand that has the Corrupted trait as if it has the same powers as the top card in the blessings discard pile. This counts as playing a blessing.",
+        "You may treat a card in your hand that has the Corrupted trait as if it has the same powers as any card in the blessings discard pile. This counts as playing a blessing."),
+    listOf("-",
+        "After the first exploration of your turn, you may examine the top card of your location deck.",
+        "After the first exploration of your turn, you may examine the top card and bottom card of your location deck.",
+        "After the first exploration of your turn, you may examine the top card of your location deck. You may encounter 1 such card that has the Arcane or Corrupted trait.",
+        "After the first exploration of your turn, you may examine the top card and bottom card of your location deck. You may encounter 1 such card that has the Arcane or Corrupted trait.")
+)
+val SEONI_POWER_LIST = listOf(SEONI_SORCERESS_POWERS, SEONI_ELEMENTAL_MASTER_POWERS, SEONI_CORRUPTOR_POWERS)
 
-class Seoni() : BaseCharacter(
-    characterName = "Seoni",
-    subclassNames = listOf(SUBCLASS_SORCEROR_NAME, SUBCLASS_ELEMENTAL_MASTER_NAME, SUBCLASS_CORRUPTOR_NAME),
-    currentSubclassId = SUBCLASS_SORCEROR_ID,
+class Seoni(
+    characterName : String = "Seoni",
+    currentSubclassId : Int = SEONI_SORCERESS_ID,
+    currentStrengthBonus : Int = 0,
+    currentDexterityBonus : Int = 0,
+    currentConstitutionBonus : Int = 0,
+    currentIntelligenceBonus : Int = 0,
+    currentWisdomBonus : Int = 0,
+    currentCharismaBonus : Int = 0,
+    currentHandSize : Int = 6,
+    currentWeapons : Int = 0,
+    currentSpells : Int = 5,
+    currentArmors : Int = 1,
+    currentItems : Int = 2,
+    currentAllies : Int = 3,
+    currentBlessings : Int = 4,
+    proficiencies : List<String> = listOf(),
+    deck : ArrayList<Card> = arrayListOf(),
+    currentPowers : List<Int> = List(SEONI_POWER_LIST[currentSubclassId].size) {0}
+) : BaseCharacter(
+    characterId = SEONI_KEY,
+    characterName = characterName,
+    subclassNames = listOf(SEONI_SORCERESS_NAME, SEONI_ELEMENTAL_MASTER_NAME, SEONI_CORRUPTOR_NAME),
+    currentSubclassId = currentSubclassId,
     maxStrengthBonus = 1,
-    currentStrengthBonus = 0,
+    currentStrengthBonus = currentStrengthBonus,
     maxDexterityBonus = 2,
-    currentDexterityBonus = 0,
+    currentDexterityBonus = currentDexterityBonus,
     maxConstitutionBonus = 2,
-    currentConstitutionBonus = 0,
+    currentConstitutionBonus = currentConstitutionBonus,
     maxIntelligenceBonus = 4,
-    currentIntelligenceBonus = 0,
+    currentIntelligenceBonus = currentIntelligenceBonus,
     maxWisdomBonus = 2,
-    currentWisdomBonus = 0,
+    currentWisdomBonus = currentWisdomBonus,
     maxCharismaBonus = 4,
-    currentCharismaBonus = 0,
+    currentCharismaBonus = currentCharismaBonus,
     maxHandSize = 7,
-    currentHandSize = 6,
+    currentHandSize = currentHandSize,
     maxWeapons = 1,
     minWeapons = 0,
-    currentWeapons = 0,
+    currentWeapons = currentWeapons,
     maxSpells = 7,
     minSpells = 5,
-    currentSpells = 5,
+    currentSpells = currentSpells,
     maxArmors = 2,
     minArmors = 1,
-    currentArmors = 1,
+    currentArmors = currentArmors,
     maxItems = 4,
     minItems = 2,
-    currentItems = 2,
+    currentItems = currentItems,
     maxAllies = 5,
     minAllies = 3,
-    currentAllies = 3,
+    currentAllies = currentAllies,
     maxBlessings = 6,
     minBlessings = 4,
-    currentBlessings = 4,
-    proficiencies = listOf(),
-    deck = arrayListOf<Card>()
+    currentBlessings = currentBlessings,
+    proficiencies = proficiencies,
+    deck = deck,
+    characterPowers = SEONI_POWER_LIST[currentSubclassId],
+    currentPowers = currentPowers,
+    characterSkills = listOf("Knowledge: Intelligence +2", "Perception: Wisdom +2","Arcane: Charisma +2"),
+    characterDice = listOf("d6","d4","d6","d8","d6","d12")
 ) {
     override fun changeSubclass(subclassNumber: Int) {
         when (subclassNumber) {
-            SUBCLASS_SORCEROR_ID -> {
+            SEONI_SORCERESS_ID -> {
                 maxHandSize = 7
                 proficiencies = listOf()
+                characterPowers = SEONI_SORCERESS_POWERS
+                currentPowers = List(characterPowers.size) {0}
             }
-            SUBCLASS_ELEMENTAL_MASTER_ID -> {
+            SEONI_ELEMENTAL_MASTER_ID -> {
                 maxHandSize = 8
                 proficiencies = listOf()
+                characterPowers = SEONI_ELEMENTAL_MASTER_POWERS
+                currentPowers = List(characterPowers.size) {0}
             }
-            SUBCLASS_CORRUPTOR_ID -> {
+            SEONI_CORRUPTOR_ID -> {
                 maxHandSize = 7
-                proficiencies = listOf("None", "Light Armors")
+                proficiencies = listOf("-", "Light Armors")
+                characterPowers = SEONI_CORRUPTOR_POWERS
+                currentPowers = List(characterPowers.size) {0}
             }
             else -> return
         }

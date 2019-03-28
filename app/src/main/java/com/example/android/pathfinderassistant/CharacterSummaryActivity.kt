@@ -2,16 +2,13 @@ package com.example.android.pathfinderassistant
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.example.android.pathfinderassistant.characters.BaseCharacter
 import com.example.android.pathfinderassistant.characters.Seoni
-import com.example.android.pathfinderassistant.deck.CARD_KEY
 import com.example.android.pathfinderassistant.deck.Card
 import com.example.android.pathfinderassistant.deck.CardListActivity
-import java.util.ArrayList
 
 val DECK_KEY = "deck"
 
