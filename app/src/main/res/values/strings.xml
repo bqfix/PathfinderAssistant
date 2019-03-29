@@ -5,14 +5,14 @@
     <string name="seoni_name" translatable="false">Seoni</string>
 
     <!-- Character Powers -->
-    <string name="powers">Powers:</string>
+    <string name="character_powers">Powers:</string>
     <string name="seoni_powers">Before your combat check, you may discard a card to draw a card that has the Arcane
         trait from your discard pile.\n\nYou may automatically succeed at your check to recharge a spell that has the
         Attack trait.\n\nWhen you acquire an ally, you may draw a card.
     </string>
 
     <!-- Card Names -->
-    <string name="cards">Cards:</string>
+    <string name="cards_colon">Cards:</string>
     <string name="dazzle_name" translatable="false">Dazzle</string>
     <string name="frigid_blast_name" translatable="false">Frigid Blast</string>
     <string name="fiery_glare_name" translatable="false">Fiery Glare</string>
@@ -104,6 +104,8 @@
 
     <!-- CharacterSummaryActivity -->
     <string name="skills">Skills</string>
+    <string name="powers">Powers</string>
+    <string name="cards">Cards</string>
     <string name="card_menu">Cards</string>
 
 </resources>

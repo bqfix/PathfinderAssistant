@@ -45,7 +45,7 @@ abstract class BaseCharacter(
     var characterPowers : List<List<String>>,
     var currentPowers : List<Int>,
     val characterSkills : List<String>,
-    val characterDice : List<String>
+    val characterDice : List<String> //Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma in that order
     ) {
 
     //A class that should implement UI changes and variable changes when subclassName is changed
