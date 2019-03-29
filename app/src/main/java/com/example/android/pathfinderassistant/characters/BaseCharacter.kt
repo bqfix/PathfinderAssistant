@@ -1,9 +1,12 @@
 package com.example.android.pathfinderassistant.characters
 
+import android.os.Parcelable
 import com.example.android.pathfinderassistant.deck.Card
+import kotlinx.android.parcel.Parcelize
 
 //A standard character to use as a parent for each derivative character
-abstract class BaseCharacter(
+@Parcelize
+open class BaseCharacter(
     val characterId : String,
     var characterName: String,
     val subclassNames: List<String>,
@@ -46,8 +49,9 @@ abstract class BaseCharacter(
     var currentPowers : List<Int>,
     val characterSkills : List<String>,
     val characterDice : List<String> //Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma in that order
-    ) {
+    ) : Parcelable {
 
     //A class that should implement UI changes and variable changes when subclassName is changed
-    abstract fun changeSubclass(subclassNumber : Int)
+    open fun changeSubclass(subclassNumber : Int) {}
 }
+

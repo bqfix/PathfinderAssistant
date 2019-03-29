@@ -100,7 +100,9 @@
         https://www.kisspng.com/png-computer-icons-clip-art-dice-icon-5720498/
     </string>
 
-    <string name="card_icon_source" translatable="false">https://www.kisspng.com/png-one-card-ace-of-spades-playing-card-ace-of-hearts-81849/</string>
+    <string name="card_icon_source" translatable="false">
+        https://www.kisspng.com/png-one-card-ace-of-spades-playing-card-ace-of-hearts-81849/
+    </string>
 
     <!-- CharacterSummaryActivity -->
     <string name="skills">Skills</string>
