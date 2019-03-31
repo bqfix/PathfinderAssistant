@@ -53,4 +53,6 @@ class CharacterRecyclerAdapter internal constructor(private val characterClickHa
     interface CharacterClickHandler {
         fun onItemClick(character: BaseCharacter)
     }
+
+    
 }

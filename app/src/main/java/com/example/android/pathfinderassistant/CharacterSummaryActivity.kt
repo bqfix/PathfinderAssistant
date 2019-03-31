@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.example.android.pathfinderassistant.Constants.CHARACTER_KEY
+import com.example.android.pathfinderassistant.Constants.DECK_KEY
 import com.example.android.pathfinderassistant.characters.BaseCharacter
 import com.example.android.pathfinderassistant.deck.Card
 import com.example.android.pathfinderassistant.deck.CardListActivity
 import kotlinx.android.synthetic.main.activity_character_summary.*
-
-const val DECK_KEY = "deck_key"
 
 class CharacterSummaryActivity : AppCompatActivity() {
 

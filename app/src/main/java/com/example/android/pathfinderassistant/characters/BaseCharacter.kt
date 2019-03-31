@@ -1,6 +1,7 @@
 package com.example.android.pathfinderassistant.characters
 
 import android.os.Parcelable
+import com.example.android.pathfinderassistant.Constants
 import com.example.android.pathfinderassistant.deck.Card
 import kotlinx.android.parcel.Parcelize
 

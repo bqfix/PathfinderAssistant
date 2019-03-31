@@ -4,11 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import com.example.android.pathfinderassistant.Constants.CHARACTER_KEY
 import com.example.android.pathfinderassistant.characters.BaseCharacter
 import com.example.android.pathfinderassistant.characters.Seoni
 import kotlinx.android.synthetic.main.activity_main.*
-
-const val CHARACTER_KEY = "character_key"
 
 class MainActivity : AppCompatActivity(), CharacterRecyclerAdapter.CharacterClickHandler {
 

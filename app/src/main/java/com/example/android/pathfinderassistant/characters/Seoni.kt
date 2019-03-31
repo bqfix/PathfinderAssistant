@@ -1,60 +1,17 @@
 package com.example.android.pathfinderassistant.characters
 
+import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_CORRUPTOR_ID
+import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_CORRUPTOR_NAME
+import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_CORRUPTOR_POWERS
+import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_ELEMENTAL_MASTER_ID
+import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_ELEMENTAL_MASTER_NAME
+import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_ELEMENTAL_MASTER_POWERS
+import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_KEY
+import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_POWER_LIST
+import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_SORCERESS_ID
+import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_SORCERESS_NAME
+import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_SORCERESS_POWERS
 import com.example.android.pathfinderassistant.deck.Card
-
-const val SEONI_KEY = "seoni_key"
-const val SEONI_SORCERESS_ID = 0
-const val SEONI_ELEMENTAL_MASTER_ID = 1
-const val SEONI_CORRUPTOR_ID = 2
-const val SEONI_SORCERESS_NAME = "SORCERESS"
-const val SEONI_ELEMENTAL_MASTER_NAME = "Elemental Master"
-const val SEONI_CORRUPTOR_NAME = "Corruptor"
-val SEONI_SORCERESS_POWERS = listOf(
-    listOf("Before your combat check, you may discard a card to draw a card that has the Arcane trait from your discard pile.",
-        "Before your combat check, you may discard a card to draw a card that has the Arcane or Magic trait from your discard pile."),
-    listOf("You may automatically succeed at your check to recharge a spell that has the Attack trait.",
-        "You may automatically succeed at your check to recharge a spell or an item that has the Attack trait."),
-    listOf("When you acquire an ally, you may draw a card.",
-        "When you acquire an ally or a spell, you may draw a card.")
-)
-val SEONI_ELEMENTAL_MASTER_POWERS = listOf(
-    listOf("For your power feat, you may check any 1 of the traits below. That trait applies in any power that uses the word \"mastered.\""),
-    listOf("-","Acid"),
-    listOf("-","Cold"),
-    listOf("-","Electricity"),
-    listOf("-","Fire"),
-    listOf("-","You may add 1 mastered trait to your check."),
-    listOf("Before your combat check, you may discard a card to draw a card that has the Arcane or mastered trait from your discard pile.",
-        "Before your combat check, you may discard a card to draw a card that has the Arcane or Magic or mastered trait from your discard pile."),
-    listOf("You may automatically succeed at your check to recharge a spell that has the Attack or mastered trait.",
-        "You may automatically succeed at your check to recharge a spell or an item that has the Attack or mastered trait."),
-    listOf("When you acquire a card that has a mastered trait or an ally, you may draw a card.",
-        "When you acquire a card that has a mastered trait or an ally or a spell, you may draw a card."),
-    listOf("-","Add 4 to your check that has a mastered trait."),
-    listOf("Reduce damage of a mastered type dealt to you by 2.",
-        "Reduce damage of a mastered type dealt to you by 4.")
-)
-val SEONI_CORRUPTOR_POWERS = listOf(
-    listOf("Before your combat check, you may discard a card to draw a card that has the Arcane trait from your discard pile.",
-        "Before your combat check, you may discard a card to draw a card that has the Arcane or Magic trait from your discard pile.",
-        "Before your combat check, you may discard a card to draw a card that has the Arcane or Corrupted trait from your discard pile.",
-        "Before your combat check, you may discard a card to draw a card that has the Arcane, Magic, or Corrupted trait from your discard pile."),
-    listOf("You may automatically succeed at your check to recharge a spell that has the Attack trait.",
-        "You may automatically succeed at your check to recharge a spell or an item that has the Attack trait."),
-    listOf("When you acquire an ally, you may draw a card.",
-        "When you acquire an ally or a spell, you may draw a card.",
-        "When you acquire an ally or a card that has the Corrupted trait, you may draw a card.",
-        "When you acquire an ally, a spell, or a card that has the Corrupted trait, you may draw a card."),
-    listOf("-",
-        "You may treat a card in your hand that has the Corrupted trait as if it has the same powers as the top card in the blessings discard pile. This counts as playing a blessing.",
-        "You may treat a card in your hand that has the Corrupted trait as if it has the same powers as any card in the blessings discard pile. This counts as playing a blessing."),
-    listOf("-",
-        "After the first exploration of your turn, you may examine the top card of your location deck.",
-        "After the first exploration of your turn, you may examine the top card and bottom card of your location deck.",
-        "After the first exploration of your turn, you may examine the top card of your location deck. You may encounter 1 such card that has the Arcane or Corrupted trait.",
-        "After the first exploration of your turn, you may examine the top card and bottom card of your location deck. You may encounter 1 such card that has the Arcane or Corrupted trait.")
-)
-val SEONI_POWER_LIST = listOf(SEONI_SORCERESS_POWERS, SEONI_ELEMENTAL_MASTER_POWERS, SEONI_CORRUPTOR_POWERS)
 
 class Seoni(
     characterName : String = "Seoni",
@@ -142,4 +99,60 @@ class Seoni(
             else -> return
         }
     }
+}
+
+object SeoniConstants{
+    const val SEONI_KEY = "seoni_key"
+    const val SEONI_SORCERESS_ID = 0
+    const val SEONI_ELEMENTAL_MASTER_ID = 1
+    const val SEONI_CORRUPTOR_ID = 2
+    const val SEONI_SORCERESS_NAME = "SORCERESS"
+    const val SEONI_ELEMENTAL_MASTER_NAME = "Elemental Master"
+    const val SEONI_CORRUPTOR_NAME = "Corruptor"
+    val SEONI_SORCERESS_POWERS = listOf(
+        listOf("Before your combat check, you may discard a card to draw a card that has the Arcane trait from your discard pile.",
+            "Before your combat check, you may discard a card to draw a card that has the Arcane or Magic trait from your discard pile."),
+        listOf("You may automatically succeed at your check to recharge a spell that has the Attack trait.",
+            "You may automatically succeed at your check to recharge a spell or an item that has the Attack trait."),
+        listOf("When you acquire an ally, you may draw a card.",
+            "When you acquire an ally or a spell, you may draw a card.")
+    )
+    val SEONI_ELEMENTAL_MASTER_POWERS = listOf(
+        listOf("For your power feat, you may check any 1 of the traits below. That trait applies in any power that uses the word \"mastered.\""),
+        listOf("-","Acid"),
+        listOf("-","Cold"),
+        listOf("-","Electricity"),
+        listOf("-","Fire"),
+        listOf("-","You may add 1 mastered trait to your check."),
+        listOf("Before your combat check, you may discard a card to draw a card that has the Arcane or mastered trait from your discard pile.",
+            "Before your combat check, you may discard a card to draw a card that has the Arcane or Magic or mastered trait from your discard pile."),
+        listOf("You may automatically succeed at your check to recharge a spell that has the Attack or mastered trait.",
+            "You may automatically succeed at your check to recharge a spell or an item that has the Attack or mastered trait."),
+        listOf("When you acquire a card that has a mastered trait or an ally, you may draw a card.",
+            "When you acquire a card that has a mastered trait or an ally or a spell, you may draw a card."),
+        listOf("-","Add 4 to your check that has a mastered trait."),
+        listOf("Reduce damage of a mastered type dealt to you by 2.",
+            "Reduce damage of a mastered type dealt to you by 4.")
+    )
+    val SEONI_CORRUPTOR_POWERS = listOf(
+        listOf("Before your combat check, you may discard a card to draw a card that has the Arcane trait from your discard pile.",
+            "Before your combat check, you may discard a card to draw a card that has the Arcane or Magic trait from your discard pile.",
+            "Before your combat check, you may discard a card to draw a card that has the Arcane or Corrupted trait from your discard pile.",
+            "Before your combat check, you may discard a card to draw a card that has the Arcane, Magic, or Corrupted trait from your discard pile."),
+        listOf("You may automatically succeed at your check to recharge a spell that has the Attack trait.",
+            "You may automatically succeed at your check to recharge a spell or an item that has the Attack trait."),
+        listOf("When you acquire an ally, you may draw a card.",
+            "When you acquire an ally or a spell, you may draw a card.",
+            "When you acquire an ally or a card that has the Corrupted trait, you may draw a card.",
+            "When you acquire an ally, a spell, or a card that has the Corrupted trait, you may draw a card."),
+        listOf("-",
+            "You may treat a card in your hand that has the Corrupted trait as if it has the same powers as the top card in the blessings discard pile. This counts as playing a blessing.",
+            "You may treat a card in your hand that has the Corrupted trait as if it has the same powers as any card in the blessings discard pile. This counts as playing a blessing."),
+        listOf("-",
+            "After the first exploration of your turn, you may examine the top card of your location deck.",
+            "After the first exploration of your turn, you may examine the top card and bottom card of your location deck.",
+            "After the first exploration of your turn, you may examine the top card of your location deck. You may encounter 1 such card that has the Arcane or Corrupted trait.",
+            "After the first exploration of your turn, you may examine the top card and bottom card of your location deck. You may encounter 1 such card that has the Arcane or Corrupted trait.")
+    )
+    val SEONI_POWER_LIST = listOf(SEONI_SORCERESS_POWERS, SEONI_ELEMENTAL_MASTER_POWERS, SEONI_CORRUPTOR_POWERS)
 }

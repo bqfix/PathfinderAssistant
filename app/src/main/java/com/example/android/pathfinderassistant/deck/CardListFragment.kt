@@ -8,13 +8,13 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.android.pathfinderassistant.Constants.CARD_KEY
 import com.example.android.pathfinderassistant.R
 import kotlinx.android.synthetic.main.fragment_card_list.view.*
 
 
 private const val ARG_CARDS = "cards"
 private const val ARG_ISTWOPANE = "is_two_pane"
-const val CARD_KEY = "card_key"
 
 class CardListFragment : Fragment(), CardRecyclerAdapter.CardClickHandler {
     private var cards : List<Card>? = null
