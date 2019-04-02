@@ -1,11 +1,11 @@
 package com.example.android.pathfinderassistant.deck
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import com.example.android.pathfinderassistant.DECK_KEY
+import com.example.android.pathfinderassistant.Constants.DECK_KEY
 import com.example.android.pathfinderassistant.DiceActivity
 import com.example.android.pathfinderassistant.R
 import kotlinx.android.synthetic.main.activity_card_list.*

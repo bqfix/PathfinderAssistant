@@ -18,6 +18,7 @@
             tools:text="Frigid Blast"
             android:textStyle="bold"
             android:textSize="20sp"
+            android:background="?attr/selectableItemBackgroundBorderless"
     />
     <View
             android:layout_width="match_parent"

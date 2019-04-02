@@ -109,5 +109,9 @@
     <string name="powers">Powers</string>
     <string name="cards">Cards</string>
     <string name="card_menu">Cards</string>
+    <string name="edit_character">Edit</string>
+
+    <!-- AddCharacterActivity -->
+    <string name="select_character">Please select a character:</string>
 
 </resources>

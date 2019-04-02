@@ -20,6 +20,7 @@ class CharacterSummaryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_character_summary)
 
+        //Get character
         character = intent.getParcelableExtra(CHARACTER_KEY)
         if (character == null) finish()
 
@@ -96,6 +97,12 @@ class CharacterSummaryActivity : AppCompatActivity() {
             }
             R.id.action_launch_dice -> {
                 val intent = Intent(this, DiceActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+            R.id.action_launch_edit -> {
+                val intent = Intent(this, EditCharacterActivity::class.java)
+                intent.putExtra(CHARACTER_KEY, character)
                 startActivity(intent)
                 return true
             }

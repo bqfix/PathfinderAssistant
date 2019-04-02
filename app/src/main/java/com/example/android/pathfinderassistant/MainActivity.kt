@@ -28,8 +28,8 @@ class MainActivity : AppCompatActivity(), CharacterRecyclerAdapter.CharacterClic
         mAdapter!!.updateCharacters(mCharacters)
 
         add_character_fab.setOnClickListener { //TODO update to launch AddEditCharacterActivity
-            mCharacters.add(Seoni())
-            mAdapter!!.updateCharacters(mCharacters)}
+            val intent = Intent(this, AddCharacterActivity::class.java)
+            startActivity(intent)}
     }
 
     //Handling of RecyclerView clicks

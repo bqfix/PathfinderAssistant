@@ -9,6 +9,12 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".AddCharacterActivity"
+                  android:parentActivityName=".MainActivity">
+        </activity>
+        <activity android:name=".EditCharacterActivity"
+                  android:parentActivityName=".MainActivity">
+        </activity>
         <activity
                 android:name=".deck.CardListActivity"
                 android:launchMode="singleTop"
