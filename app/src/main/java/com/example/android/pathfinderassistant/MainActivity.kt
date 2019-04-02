@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity(), CharacterRecyclerAdapter.CharacterClic
         character_list_rv.adapter = mAdapter
         character_list_rv.layoutManager = layoutManager
 
+
+
         mAdapter!!.updateCharacters(mCharacters)
 
         add_character_fab.setOnClickListener { //TODO update to launch AddEditCharacterActivity

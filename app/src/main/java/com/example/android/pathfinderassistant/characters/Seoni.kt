@@ -14,6 +14,7 @@ import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_S
 import com.example.android.pathfinderassistant.deck.Card
 
 class Seoni(
+    databaseId : Int? = null,
     characterName : String = "Seoni",
     currentSubclassId : Int = SEONI_SORCERESS_ID,
     currentStrengthBonus : Int = 0,
@@ -29,10 +30,11 @@ class Seoni(
     currentItems : Int = 2,
     currentAllies : Int = 3,
     currentBlessings : Int = 4,
-    proficiencies : List<String> = listOf(),
+    proficiencies : List<String> = if (currentSubclassId == SEONI_CORRUPTOR_ID) listOf("-", "Light Armors") else listOf(),
     deck : ArrayList<Card> = arrayListOf(),
     currentPowers : List<Int> = List(SEONI_POWER_LIST[currentSubclassId].size) {0}
 ) : BaseCharacter(
+    databaseId = databaseId,
     characterId = SEONI_KEY,
     characterName = characterName,
     subclassNames = listOf(SEONI_SORCERESS_NAME, SEONI_ELEMENTAL_MASTER_NAME, SEONI_CORRUPTOR_NAME),
@@ -49,7 +51,7 @@ class Seoni(
     currentWisdomBonus = currentWisdomBonus,
     maxCharismaBonus = 4,
     currentCharismaBonus = currentCharismaBonus,
-    maxHandSize = 7,
+    maxHandSize = if (currentSubclassId == SEONI_ELEMENTAL_MASTER_ID) 8 else 7,
     currentHandSize = currentHandSize,
     maxWeapons = 1,
     minWeapons = 0,

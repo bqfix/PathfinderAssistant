@@ -8,6 +8,7 @@ import kotlinx.android.parcel.Parcelize
 //A standard character to use as a parent for each derivative character
 @Parcelize
 open class BaseCharacter(
+    val databaseId : Int?,
     val characterId : String,
     var characterName: String,
     val subclassNames: List<String>,
