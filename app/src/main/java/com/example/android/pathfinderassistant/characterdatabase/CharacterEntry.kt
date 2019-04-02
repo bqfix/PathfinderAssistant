@@ -8,7 +8,7 @@ import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_P
 import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_SORCERESS_ID
 import com.example.android.pathfinderassistant.deck.Card
 
-@Entity(tableName = "characters")
+@Entity(tableName = "character_entries")
 class CharacterEntry(baseCharacter: BaseCharacter) {
     @PrimaryKey(autoGenerate = true)
     var databaseId : Int? = baseCharacter.databaseId

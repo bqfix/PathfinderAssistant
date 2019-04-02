@@ -8,6 +8,7 @@ object CharacterDatabaseUtils {
     fun characterEntryToCharacter(characterEntry: CharacterEntry): BaseCharacter? {
         return when (characterEntry.characterId) {
             SeoniConstants.SEONI_KEY -> Seoni(
+                databaseId = characterEntry.databaseId,
                 characterName = characterEntry.characterName,
                 currentSubclassId = characterEntry.currentSubclassId,
                 currentStrengthBonus = characterEntry.currentStrengthBonus,

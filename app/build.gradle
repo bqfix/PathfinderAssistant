@@ -53,4 +53,8 @@ dependencies {
     //Room Dependencies
     implementation "android.arch.persistence.room:runtime:1.1.1"
     kapt "android.arch.persistence.room:compiler:1.1.1"
+
+    //LiveData and ViewModel Dependencies
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+    kapt "android.arch.lifecycle:compiler:1.1.1"
 }
