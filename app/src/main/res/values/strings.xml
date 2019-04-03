@@ -114,4 +114,13 @@
     <!-- AddCharacterActivity -->
     <string name="select_character">Please select a character:</string>
 
+    <!-- EditCharacterActivity -->
+    <string name="skill_bonuses">Skill Bonuses</string>
+    <string name="strength_bonus">Strength:</string>
+    <string name="dexterity_bonus">Dexterity:</string>
+    <string name="constitution_bonus">Constitution:</string>
+    <string name="intelligence_bonus">Intelligence:</string>
+    <string name="wisdom_bonus">Wisdom:</string>
+    <string name="charisma_bonus">Charisma:</string>
+
 </resources>
