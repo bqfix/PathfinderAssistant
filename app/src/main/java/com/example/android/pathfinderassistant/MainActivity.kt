@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity(), CharacterRecyclerAdapter.CharacterClic
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        title = "Characters"
+
         mAdapter = CharacterRecyclerAdapter(this)
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         character_list_rv.adapter = mAdapter

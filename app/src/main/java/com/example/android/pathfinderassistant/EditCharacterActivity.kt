@@ -23,6 +23,8 @@ class EditCharacterActivity : AppCompatActivity() {
         character = intent.getParcelableExtra(Constants.CHARACTER_KEY)
         if (character == null) finish()
 
+        title = "Editing ${character!!.characterName}"
+
         assignPrimaryStatSpinners()
     }
 

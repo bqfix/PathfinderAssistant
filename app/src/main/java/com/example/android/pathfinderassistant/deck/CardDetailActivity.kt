@@ -22,6 +22,8 @@ class CardDetailActivity : AppCompatActivity() {
         card = intent.getParcelableExtra(CARD_KEY)
         if (card == null) finish()
 
+        title = card!!.name
+
         //Setup fragment
         if (detailFragment == null) {
             detailFragment =

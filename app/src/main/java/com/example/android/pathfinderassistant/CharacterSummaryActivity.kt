@@ -24,6 +24,8 @@ class CharacterSummaryActivity : AppCompatActivity() {
         character = intent.getParcelableExtra(CHARACTER_KEY)
         if (character == null) finish()
 
+        title = character!!.characterName
+
         character!!.deck =  arrayListOf(
             Card(
                 getString(R.string.dazzle_name),

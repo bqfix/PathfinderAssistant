@@ -27,6 +27,8 @@ class CardListActivity : AppCompatActivity(),
             finish()
         }
 
+        title = "Deck"
+
 
         //Check if in two-pane mode by seeing if the detail container has been inflated
         isTwoPane = (cardlist_detailfragment_container != null)

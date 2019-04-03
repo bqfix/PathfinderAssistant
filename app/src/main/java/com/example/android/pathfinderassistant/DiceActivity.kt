@@ -15,6 +15,8 @@ class DiceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dice)
 
+        title = "Dice"
+
         supportActionBar!!.setHomeButtonEnabled(true)
 
         makeEditTextVisible()

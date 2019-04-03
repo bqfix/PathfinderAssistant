@@ -13,6 +13,8 @@ class AddCharacterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_character)
 
+        title = "New Character"
+
         //Set each character option to launch EditCharacterActivity with a new instance of that character
         seoni_selection_tv.setOnClickListener { launchEditActivity(Seoni()) }
     }
