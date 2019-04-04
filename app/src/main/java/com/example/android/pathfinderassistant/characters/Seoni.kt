@@ -2,15 +2,12 @@ package com.example.android.pathfinderassistant.characters
 
 import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_CORRUPTOR_ID
 import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_CORRUPTOR_NAME
-import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_CORRUPTOR_POWERS
 import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_ELEMENTAL_MASTER_ID
 import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_ELEMENTAL_MASTER_NAME
-import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_ELEMENTAL_MASTER_POWERS
 import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_KEY
 import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_POWER_LIST
 import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_SORCERESS_ID
 import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_SORCERESS_NAME
-import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_SORCERESS_POWERS
 import com.example.android.pathfinderassistant.deck.Card
 
 class Seoni(
@@ -78,38 +75,14 @@ class Seoni(
     currentPowers = currentPowers,
     characterSkills = listOf("Knowledge: Intelligence +2", "Perception: Wisdom +2","Arcane: Charisma +2"),
     characterDice = listOf("d6","d4","d6","d8","d6","d12")
-) {
-    override fun changeSubclass(subclassNumber: Int) {
-        when (subclassNumber) {
-            SEONI_SORCERESS_ID -> {
-                maxHandSize = 7
-                proficiencies = listOf()
-                characterPowers = SEONI_SORCERESS_POWERS
-                currentPowers = List(characterPowers.size) {0}
-            }
-            SEONI_ELEMENTAL_MASTER_ID -> {
-                maxHandSize = 8
-                proficiencies = listOf()
-                characterPowers = SEONI_ELEMENTAL_MASTER_POWERS
-                currentPowers = List(characterPowers.size) {0}
-            }
-            SEONI_CORRUPTOR_ID -> {
-                maxHandSize = 7
-                proficiencies = listOf("-", "Light Armors")
-                characterPowers = SEONI_CORRUPTOR_POWERS
-                currentPowers = List(characterPowers.size) {0}
-            }
-            else -> return
-        }
-    }
-}
+)
 
 object SeoniConstants{
     const val SEONI_KEY = "seoni_key"
     const val SEONI_SORCERESS_ID = 0
     const val SEONI_ELEMENTAL_MASTER_ID = 1
     const val SEONI_CORRUPTOR_ID = 2
-    const val SEONI_SORCERESS_NAME = "SORCERESS"
+    const val SEONI_SORCERESS_NAME = "Sorceress"
     const val SEONI_ELEMENTAL_MASTER_NAME = "Elemental Master"
     const val SEONI_CORRUPTOR_NAME = "Corruptor"
     val SEONI_SORCERESS_POWERS = listOf(

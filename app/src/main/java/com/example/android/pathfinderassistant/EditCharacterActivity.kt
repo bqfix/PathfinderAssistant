@@ -1,20 +1,20 @@
 package com.example.android.pathfinderassistant
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.Toast
 import com.example.android.pathfinderassistant.characters.BaseCharacter
 import kotlinx.android.synthetic.main.activity_edit_character.*
-import kotlin.math.max
 
 class EditCharacterActivity : AppCompatActivity() {
 
     var character : BaseCharacter? = null
+    var subclassSpinnerPosition : Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +26,7 @@ class EditCharacterActivity : AppCompatActivity() {
 
         title = "Editing ${character!!.characterName}"
 
+        assignSubclassSpinner()
         assignPrimaryStatSpinners()
         assignPowerSpinners()
         assignCardSpinners()
@@ -50,6 +51,27 @@ class EditCharacterActivity : AppCompatActivity() {
         spinner.setSelection(index)
     }
 
+    //Helper method to assign Subclass spinner
+    fun assignSubclassSpinner() {
+        val adapter :ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, character!!.subclassNames)
+        edit_subclass_spinner.adapter = adapter
+        edit_subclass_spinner.setSelection(character!!.currentSubclassId) //Set selection via subclass ID
+        edit_subclass_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (subclassSpinnerPosition == null) {  //Should only occur when activity begins and this is initially called
+                    subclassSpinnerPosition = position
+                }
+                if (position != subclassSpinnerPosition) { //Only needs to execute if the position of the spinner has changed
+                    subclassSpinnerPosition = position
+                    character!!.changeSubclass(position)  //Called to update the character's values to reflect the subclass change
+                    assignPowerSpinners()  //As powers change when the subclass updates, must be called to repopulate the views accurately
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+    }
+
     //Helper method to assign the stat spinners for the six primary stats
     fun assignPrimaryStatSpinners() {
         assignNumericSpinnerValues(spinner = edit_strength_spinner, maxSize = character!!.maxStrengthBonus, currentValueOfSpinner = character!!.currentStrengthBonus)
@@ -69,6 +91,9 @@ class EditCharacterActivity : AppCompatActivity() {
         for ((index, value) in character!!.characterPowers.withIndex()) { //Create values for each power in CharacterPowers
             val spinner = Spinner(this, Spinner.MODE_DIALOG)
             spinner.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT) //(Width, Height)
+            val paddingLeftAndTop : Int = (8 * resources.displayMetrics.density + 0.5f).toInt() //To add reasonable spacing
+            val paddingRight : Int = (32 * resources.displayMetrics.density + 0.5f).toInt() //To prevent overlap with arrow
+            spinner.setPadding( paddingLeftAndTop, paddingLeftAndTop, paddingRight,0)
             val adapter : ArrayAdapter<String> = ArrayAdapter(this, R.layout.spinner_selection_multiline, value) //Populate the spinner using a custom TextView
             spinner.adapter = adapter
             spinner.setSelection(character!!.currentPowers[index]) //Find the current selection for each power by cross-referencing with the secondary list

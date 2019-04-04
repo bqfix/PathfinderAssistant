@@ -115,6 +115,7 @@
     <string name="select_character">Please select a character:</string>
 
     <!-- EditCharacterActivity -->
+    <string name="subclass">Subclass:</string>
     <string name="skill_feats">Skill Feats</string>
     <string name="strength_bonus">Strength:</string>
     <string name="dexterity_bonus">Dexterity:</string>
