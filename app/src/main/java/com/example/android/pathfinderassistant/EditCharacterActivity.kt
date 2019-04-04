@@ -2,12 +2,16 @@ package com.example.android.pathfinderassistant
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
+import com.example.android.pathfinderassistant.characterdatabase.CharacterDatabase
+import com.example.android.pathfinderassistant.characterdatabase.CharacterEntry
 import com.example.android.pathfinderassistant.characters.BaseCharacter
 import kotlinx.android.synthetic.main.activity_edit_character.*
 
@@ -15,6 +19,7 @@ class EditCharacterActivity : AppCompatActivity() {
 
     var character : BaseCharacter? = null
     var subclassSpinnerPosition : Int? = null
+    var mDatabase : CharacterDatabase? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,20 +33,12 @@ class EditCharacterActivity : AppCompatActivity() {
 
         edit_name_et.setText(character!!.characterName) //Initialize EditText as current character name
 
+        mDatabase = CharacterDatabase.getInstance(this)  //Get database
+
         assignSubclassSpinner()
         assignPrimaryStatSpinners()
         assignPowerSpinners()
         assignCardSpinners()
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item!!.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
-        }
     }
 
     //Helper function to assign numeric spinners
@@ -74,7 +71,7 @@ class EditCharacterActivity : AppCompatActivity() {
         }
     }
 
-    //Helper method to assign the stat spinners for the six primary stats
+    //Helper method to assign the stat spinners for the six primary stats (Note: Not done as loop on purpose, for visibility/clarity purposes)
     fun assignPrimaryStatSpinners() {
         assignNumericSpinnerValues(spinner = edit_strength_spinner, maxSize = character!!.maxStrengthBonus, currentValueOfSpinner = character!!.currentStrengthBonus)
         assignNumericSpinnerValues(spinner = edit_dexterity_spinner, maxSize = character!!.maxDexterityBonus, currentValueOfSpinner = character!!.currentDexterityBonus)
@@ -103,7 +100,7 @@ class EditCharacterActivity : AppCompatActivity() {
         }
     }
 
-    //Helper method to assign card spinners
+    //Helper method to assign card spinners (Note: Not done as loop on purpose, for visibility/clarity purposes)
     fun assignCardSpinners() {
         assignNumericSpinnerValues(spinner = edit_weapons_spinner, maxSize = character!!.maxWeapons, minSize = character!!.minWeapons, currentValueOfSpinner = character!!.currentWeapons)
         assignNumericSpinnerValues(spinner = edit_spells_spinner, maxSize = character!!.maxSpells, minSize = character!!.minSpells, currentValueOfSpinner = character!!.currentSpells)
@@ -112,4 +109,71 @@ class EditCharacterActivity : AppCompatActivity() {
         assignNumericSpinnerValues(spinner = edit_allies_spinner, maxSize = character!!.maxAllies, minSize = character!!.minAllies, currentValueOfSpinner = character!!.currentAllies)
         assignNumericSpinnerValues(spinner = edit_blessings_spinner, maxSize = character!!.maxBlessings, minSize = character!!.minBlessings, currentValueOfSpinner = character!!.currentBlessings)
     }
+
+    //Helper method for saving character data as CharacterEntry (Note: Not done as loop on purpose, for visibility/clarity purposes)
+    fun updateAndConvertCharacter() : CharacterEntry { //First, update character with the fields provided (subclass is updated on spinner change, and thus does not need to be altered)
+        character!!.characterName = edit_name_et.text.toString()
+        //Primary Stats
+        character!!.currentStrengthBonus = edit_strength_spinner.selectedItem as Int
+        character!!.currentDexterityBonus = edit_dexterity_spinner.selectedItem as Int
+        character!!.currentConstitutionBonus = edit_constitution_spinner.selectedItem as Int
+        character!!.currentIntelligenceBonus = edit_intelligence_spinner.selectedItem as Int
+        character!!.currentWisdomBonus = edit_wisdom_spinner.selectedItem as Int
+        character!!.currentCharismaBonus = edit_charisma_spinner.selectedItem as Int
+
+        //Power Feats
+        character!!.currentHandSize = edit_hand_size_spinner.selectedItem as Int
+        //Loop to get each spinner from the container
+        val newPowers = character!!.currentPowers.toMutableList() //Necessary as the currentPowers variable is not inherently mutable
+        for (index in 0..power_feats_container.childCount) {
+            val spinner = power_feats_container.getChildAt(index) as Spinner
+            newPowers.set(index, spinner.selectedItemPosition)
+        }
+        character!!.currentPowers = newPowers
+
+        //Card Feats
+        character!!.currentWeapons = edit_weapons_spinner.selectedItem as Int
+        character!!.currentSpells = edit_spells_spinner.selectedItem as Int
+        character!!.currentArmors = edit_armors_spinner.selectedItem as Int
+        character!!.currentItems = edit_items_spinner.selectedItem as Int
+        character!!.currentAllies = edit_allies_spinner.selectedItem as Int
+        character!!.currentBlessings = edit_blessings_spinner.selectedItem as Int
+
+        return CharacterEntry(character!!)
+    }
+
+    //Helper method for saving or updating character in database
+    fun saveOrUpdateCharacter(characterEntry: CharacterEntry) {
+        when (character!!.databaseId) {
+            null -> AppExecutors.getInstance()!!.diskIO.execute {
+                mDatabase!!.characterDao().insertCharacter(characterEntry)
+            }
+            else -> AppExecutors.getInstance()!!.diskIO.execute {
+                mDatabase!!.characterDao().updateCharacter(characterEntry)
+            }
+        }
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.character_edit_activity_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            R.id.action_save_character -> {
+                val characterEntry = updateAndConvertCharacter()
+                saveOrUpdateCharacter(characterEntry)
+                Toast.makeText(this, R.string.character_saved_confirmation, Toast.LENGTH_SHORT).show()
+                return true //TODO finish activity?  To where?
+            }
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
 }
