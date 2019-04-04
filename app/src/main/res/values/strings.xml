@@ -115,6 +115,9 @@
     <string name="select_character">Please select a character:</string>
 
     <!-- EditCharacterActivity -->
+    <string name="name">Name:</string>
+    <string name="edit_name_hint">Input Name</string>
+    <string name="edit_name_digits">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyk1234567890</string>
     <string name="subclass">Subclass:</string>
     <string name="skill_feats">Skill Feats</string>
     <string name="strength_bonus">Strength:</string>

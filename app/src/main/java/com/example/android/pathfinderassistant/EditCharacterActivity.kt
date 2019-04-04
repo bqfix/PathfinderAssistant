@@ -26,6 +26,8 @@ class EditCharacterActivity : AppCompatActivity() {
 
         title = "Editing ${character!!.characterName}"
 
+        edit_name_et.setText(character!!.characterName) //Initialize EditText as current character name
+
         assignSubclassSpinner()
         assignPrimaryStatSpinners()
         assignPowerSpinners()

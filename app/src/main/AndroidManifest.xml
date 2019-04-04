@@ -13,7 +13,8 @@
                   android:parentActivityName=".MainActivity">
         </activity>
         <activity android:name=".EditCharacterActivity"
-                  android:parentActivityName=".MainActivity">
+                  android:parentActivityName=".MainActivity"
+        android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
                 android:name=".deck.CardListActivity"
