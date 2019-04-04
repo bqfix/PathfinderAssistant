@@ -52,6 +52,7 @@ class Seoni(
     maxCharismaBonus = 4,
     currentCharismaBonus = currentCharismaBonus,
     maxHandSize = if (currentSubclassId == SEONI_ELEMENTAL_MASTER_ID) 8 else 7,
+    minHandSize = 6,
     currentHandSize = currentHandSize,
     maxWeapons = 1,
     minWeapons = 0,

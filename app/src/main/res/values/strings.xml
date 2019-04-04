@@ -115,12 +115,21 @@
     <string name="select_character">Please select a character:</string>
 
     <!-- EditCharacterActivity -->
-    <string name="skill_bonuses">Skill Bonuses</string>
+    <string name="skill_feats">Skill Feats</string>
     <string name="strength_bonus">Strength:</string>
     <string name="dexterity_bonus">Dexterity:</string>
     <string name="constitution_bonus">Constitution:</string>
     <string name="intelligence_bonus">Intelligence:</string>
     <string name="wisdom_bonus">Wisdom:</string>
     <string name="charisma_bonus">Charisma:</string>
+    <string name="power_feats">Power Feats</string>
+    <string name="hand_size">Hand Size: </string>
+    <string name="card_feats">Card Feats</string>
+    <string name="current_weapons">Weapons:</string>
+    <string name="current_spells">Spells:</string>
+    <string name="current_armors">Armors:</string>
+    <string name="current_items">Items:</string>
+    <string name="current_allies">Allies:</string>
+    <string name="current_blessings">Blessings:</string>
 
 </resources>

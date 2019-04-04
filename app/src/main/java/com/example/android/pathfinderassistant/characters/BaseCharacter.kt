@@ -26,6 +26,7 @@ open class BaseCharacter(
     val maxCharismaBonus: Int,
     var currentCharismaBonus: Int,
     var maxHandSize: Int,
+    val minHandSize: Int,
     var currentHandSize: Int,
     val maxWeapons: Int,
     val minWeapons: Int,
