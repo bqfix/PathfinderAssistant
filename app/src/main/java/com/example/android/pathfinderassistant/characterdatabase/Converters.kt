@@ -19,7 +19,6 @@ class Converters {
         @JvmStatic
         fun fromStringToIntList(convertedString : String) : List<Int>{
             val stringList = convertedString.split(",").toList()
-            Log.e("after", convertedString)
             val intList : MutableList<Int> = mutableListOf()
             for (string in stringList) {
                 if (!(string.isEmpty())) { //Only add if not empty string

@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity(), CharacterRecyclerAdapter.CharacterClic
             val characters : ArrayList<BaseCharacter> = arrayListOf() //Clear mCharacters and begin repopulating
             for (characterEntry in characterEntries!!) {
                 characters.add(CharacterDatabaseUtils.characterEntryToCharacter(characterEntry)!!)
-                Log.e("Entry powers", "${characterEntry.currentPowers}")
             }
             mAdapter!!.updateCharacters(characters)
          })

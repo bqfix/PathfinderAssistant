@@ -106,6 +106,7 @@ class CharacterSummaryActivity : AppCompatActivity() {
                 val intent = Intent(this, EditCharacterActivity::class.java)
                 intent.putExtra(CHARACTER_KEY, character)
                 startActivity(intent)
+                finish()
                 return true
             }
             else -> return super.onOptionsItemSelected(item)

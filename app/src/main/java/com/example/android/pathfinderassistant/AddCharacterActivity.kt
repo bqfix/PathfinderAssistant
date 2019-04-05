@@ -23,5 +23,6 @@ class AddCharacterActivity : AppCompatActivity() {
         val intent = Intent(this, EditCharacterActivity::class.java)
         intent.putExtra(Constants.CHARACTER_KEY, character)
         startActivity(intent)
+        finish()
     }
 }

@@ -136,6 +136,9 @@
     <string name="current_allies">Allies:</string>
     <string name="current_blessings">Blessings:</string>
     <string name="save_character">Save</string>
+    <string name="delete_character">Delete</string>
     <string name="character_saved_confirmation">Character saved.</string>
+    <string name="character_not_deleted">Character not in database.</string>
+    <string name="character_deleted">Character deleted.</string>
 
 </resources>
