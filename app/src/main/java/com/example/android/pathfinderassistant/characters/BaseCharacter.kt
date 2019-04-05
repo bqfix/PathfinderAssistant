@@ -53,6 +53,10 @@ open class BaseCharacter(
     val characterDice: List<String> //Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma in that order
 ) : Parcelable {
 
+    //Dummy BaseCharacter
+    constructor() : this(null,"","",listOf(""),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        listOf(""), arrayListOf<Card>(), listOf(listOf("")), listOf(0), listOf(""), listOf(""))
+
     //For altering the stats accordingly when the subclass of a class is changed
     fun changeSubclass(subclassNumber: Int) {
         when {

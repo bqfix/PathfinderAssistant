@@ -24,8 +24,6 @@ object CharacterDatabaseUtils {
                 currentItems = characterEntry.currentItems,
                 currentAllies = characterEntry.currentAllies,
                 currentBlessings = characterEntry.currentBlessings,
-                proficiencies = characterEntry.proficiencies,
-                deck = characterEntry.deck,
                 currentPowers = characterEntry.currentPowers)
             else -> null
         }

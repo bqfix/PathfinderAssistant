@@ -2,6 +2,7 @@ package com.example.android.pathfinderassistant
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -125,7 +126,7 @@ class EditCharacterActivity : AppCompatActivity() {
         character!!.currentHandSize = edit_hand_size_spinner.selectedItem as Int
         //Loop to get each spinner from the container
         val newPowers = character!!.currentPowers.toMutableList() //Necessary as the currentPowers variable is not inherently mutable
-        for (index in 0..power_feats_container.childCount) {
+        for (index in 0..(power_feats_container.childCount - 1)) {
             val spinner = power_feats_container.getChildAt(index) as Spinner
             newPowers.set(index, spinner.selectedItemPosition)
         }

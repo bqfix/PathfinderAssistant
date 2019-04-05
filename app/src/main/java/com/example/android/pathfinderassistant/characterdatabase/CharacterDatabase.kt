@@ -3,9 +3,11 @@ package com.example.android.pathfinderassistant.characterdatabase
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
+import android.arch.persistence.room.TypeConverters
 import android.content.Context
 
-@Database(entities = arrayOf(CharacterEntry::class), version = 1, exportSchema = false)
+@Database(entities = [CharacterEntry::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class CharacterDatabase : RoomDatabase() {
 
     abstract fun characterDao() : CharacterDao
