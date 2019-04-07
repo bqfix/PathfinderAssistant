@@ -3,7 +3,6 @@ package com.example.android.pathfinderassistant
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -13,8 +12,8 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
-import com.example.android.pathfinderassistant.characterdatabase.CharacterDatabase
-import com.example.android.pathfinderassistant.characterdatabase.CharacterEntry
+import com.example.android.pathfinderassistant.database.AppDatabase
+import com.example.android.pathfinderassistant.database.CharacterEntry
 import com.example.android.pathfinderassistant.characters.BaseCharacter
 import kotlinx.android.synthetic.main.activity_edit_character.*
 
@@ -22,7 +21,7 @@ class EditCharacterActivity : AppCompatActivity() {
 
     var character: BaseCharacter? = null
     var subclassSpinnerPosition: Int? = null
-    var mDatabase: CharacterDatabase? = null
+    var mDatabase: AppDatabase? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +36,7 @@ class EditCharacterActivity : AppCompatActivity() {
         edit_name_et.setText(character!!.characterName)
         edit_name_et.setOnFocusChangeListener { v, hasFocus -> if (!hasFocus) hideKeyboard(v) }//Initialize EditText as current character name
 
-        mDatabase = CharacterDatabase.getInstance(this)  //Get database
+        mDatabase = AppDatabase.getInstance(this)  //Get database
 
         assignSubclassSpinner()
         assignPrimaryStatSpinners()

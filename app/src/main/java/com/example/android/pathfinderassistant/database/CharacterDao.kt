@@ -1,4 +1,4 @@
-package com.example.android.pathfinderassistant.characterdatabase
+package com.example.android.pathfinderassistant.database
 
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*

@@ -6,12 +6,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import com.example.android.pathfinderassistant.Constants.CHARACTER_KEY
-import com.example.android.pathfinderassistant.characterdatabase.CharacterDatabaseUtils
-import com.example.android.pathfinderassistant.characterdatabase.CharacterEntry
+import com.example.android.pathfinderassistant.database.CharacterDatabaseUtils
 import com.example.android.pathfinderassistant.characters.BaseCharacter
-import com.example.android.pathfinderassistant.characters.Seoni
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), CharacterRecyclerAdapter.CharacterClickHandler {

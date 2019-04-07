@@ -1,4 +1,4 @@
-package com.example.android.pathfinderassistant.characterdatabase
+package com.example.android.pathfinderassistant.database
 
 import com.example.android.pathfinderassistant.characters.*
 

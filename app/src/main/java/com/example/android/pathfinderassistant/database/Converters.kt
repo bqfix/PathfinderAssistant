@@ -1,7 +1,6 @@
-package com.example.android.pathfinderassistant.characterdatabase
+package com.example.android.pathfinderassistant.database
 
 import android.arch.persistence.room.TypeConverter
-import android.util.Log
 
 class Converters {
     companion object {

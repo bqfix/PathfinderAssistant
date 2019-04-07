@@ -1,13 +1,8 @@
-package com.example.android.pathfinderassistant.characterdatabase
+package com.example.android.pathfinderassistant.database
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
-import android.arch.persistence.room.TypeConverters
 import com.example.android.pathfinderassistant.characters.BaseCharacter
-import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_CORRUPTOR_ID
-import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_POWER_LIST
-import com.example.android.pathfinderassistant.characters.SeoniConstants.SEONI_SORCERESS_ID
-import com.example.android.pathfinderassistant.deck.Card
 
 @Entity(tableName = "character_entries")
 class CharacterEntry(baseCharacter: BaseCharacter?) {
