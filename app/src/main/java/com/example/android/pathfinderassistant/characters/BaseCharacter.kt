@@ -59,8 +59,8 @@ open class BaseCharacter(
 
     //For altering the stats accordingly when the subclass of a class is changed
     fun changeSubclass(subclassNumber: Int) {
-        when {
-            characterId == SeoniConstants.SEONI_KEY -> {
+        when (characterId) {
+            SeoniConstants.SEONI_KEY -> {
                 when (subclassNumber) {
                     SeoniConstants.SEONI_SORCERESS_ID -> {
                         currentSubclassId = SeoniConstants.SEONI_SORCERESS_ID
@@ -81,6 +81,29 @@ open class BaseCharacter(
                         maxHandSize = 7
                         proficiencies = listOf("-", "Light Armors")
                         characterPowers = SeoniConstants.SEONI_CORRUPTOR_POWERS
+                        currentPowers = List(characterPowers.size) { 0 }
+                    }
+                    else -> return
+                }
+            }
+            ImrijkaConstants.IMRIJKA_KEY -> {
+                when (subclassNumber) {
+                    ImrijkaConstants.IMRIJKA_INQUISITOR_ID -> {
+                        currentSubclassId = ImrijkaConstants.IMRIJKA_INQUISITOR_ID
+                        maxHandSize = 6
+                        characterPowers = ImrijkaConstants.IMRIJKA_INQUISITOR_POWERS
+                        currentPowers = List(characterPowers.size) { 0 }
+                    }
+                    ImrijkaConstants.IMRIJKA_WANDERING_JUDGE_ID -> {
+                        currentSubclassId = ImrijkaConstants.IMRIJKA_WANDERING_JUDGE_ID
+                        maxHandSize = 7
+                        characterPowers = ImrijkaConstants.IMRIJKA_WANDERING_JUDGE_POWERS
+                        currentPowers = List(characterPowers.size) { 0 }
+                    }
+                    ImrijkaConstants.IMRIJKA_COLD_IRON_WARDEN_ID -> {
+                        currentSubclassId = ImrijkaConstants.IMRIJKA_COLD_IRON_WARDEN_ID
+                        maxHandSize = 7
+                        characterPowers = ImrijkaConstants.IMRIJKA_COLD_IRON_WARDEN_POWERS
                         currentPowers = List(characterPowers.size) { 0 }
                     }
                     else -> return

@@ -3,6 +3,7 @@
 
     <!-- Character Names -->
     <string name="seoni_name" translatable="false">Seoni</string>
+    <string name="imrijka_name" translatable="false">Imrijka</string>
 
     <!-- Character Powers -->
     <string name="character_powers">Powers:</string>
