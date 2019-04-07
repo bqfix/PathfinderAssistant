@@ -111,6 +111,7 @@ object SeoniConstants{
             "Reduce damage of a mastered type dealt to you by 4.")
     )
     val SEONI_CORRUPTOR_POWERS = listOf(
+        listOf("-", "Proficient with Light Armors"),
         listOf("Before your combat check, you may discard a card to draw a card that has the Arcane trait from your discard pile.",
             "Before your combat check, you may discard a card to draw a card that has the Arcane or Magic trait from your discard pile.",
             "Before your combat check, you may discard a card to draw a card that has the Arcane or Corrupted trait from your discard pile.",

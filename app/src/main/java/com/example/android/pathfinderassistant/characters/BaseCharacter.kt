@@ -79,7 +79,6 @@ open class BaseCharacter(
                     SeoniConstants.SEONI_CORRUPTOR_ID -> {
                         currentSubclassId = SeoniConstants.SEONI_CORRUPTOR_ID
                         maxHandSize = 7
-                        proficiencies = listOf("-", "Light Armors")
                         characterPowers = SeoniConstants.SEONI_CORRUPTOR_POWERS
                         currentPowers = List(characterPowers.size) { 0 }
                     }

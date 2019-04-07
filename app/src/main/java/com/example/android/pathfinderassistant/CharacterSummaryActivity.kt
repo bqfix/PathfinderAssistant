@@ -3,6 +3,8 @@ package com.example.android.pathfinderassistant
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.text.TextUtils.isEmpty
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.example.android.pathfinderassistant.Constants.CHARACTER_KEY
@@ -14,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_character_summary.*
 
 class CharacterSummaryActivity : AppCompatActivity() {
 
-    var character : BaseCharacter? = null
+    var character: BaseCharacter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +28,7 @@ class CharacterSummaryActivity : AppCompatActivity() {
 
         title = character!!.characterName
 
-        character!!.deck =  arrayListOf(
+        character!!.deck = arrayListOf(
             Card(
                 getString(R.string.dazzle_name),
                 getString(R.string.dazzle_descrip)
@@ -117,8 +119,10 @@ class CharacterSummaryActivity : AppCompatActivity() {
         //Set Main Skills section
         val strengthString = "Strength: ${character!!.characterDice[0]} +${character!!.currentStrengthBonus}"
         val dexterityString = "Dexterity: ${character!!.characterDice[1]} +${character!!.currentDexterityBonus}"
-        val constitutionString = "Constitution: ${character!!.characterDice[2]} +${character!!.currentConstitutionBonus}"
-        val intelligenceString = "Intelligence: ${character!!.characterDice[3]} +${character!!.currentIntelligenceBonus}"
+        val constitutionString =
+            "Constitution: ${character!!.characterDice[2]} +${character!!.currentConstitutionBonus}"
+        val intelligenceString =
+            "Intelligence: ${character!!.characterDice[3]} +${character!!.currentIntelligenceBonus}"
         val wisdomString = "Wisdom: ${character!!.characterDice[4]} +${character!!.currentWisdomBonus}"
         val charismaString = "Charisma: ${character!!.characterDice[5]} +${character!!.currentCharismaBonus}"
         strength_tv.setText(strengthString)
@@ -133,9 +137,31 @@ class CharacterSummaryActivity : AppCompatActivity() {
         skills_tv.setText(skillsString)
 
         //Set Powers section
-        var powersString :String = "Hand Size: ${character!!.currentHandSize}\n\n"
-        for ((index, powerOptions) in character!!.characterPowers.withIndex()) { //Check the list of all characterPowers against the indexes provided in the currentPowers list
-            powersString = powersString.plus("${powerOptions[character!!.currentPowers[index]]}\n\n")
+        var powersString = "Hand Size: ${character!!.currentHandSize}\n\n" //Add Hand Size
+        val proficiencies = character!!.proficiencies //Add proficiencies
+        if (!(proficiencies.isEmpty())) {
+            powersString = powersString.plus("Proficient in: ")
+            for ((index, proficiencyString) in proficiencies.withIndex()) { //Add proficiencies one by one, add space after last proficiency
+                if (index < (proficiencies.size - 1)) {
+                    Log.wtf("index", "value at $index is $proficiencyString")
+                    Log.wtf("size", "${proficiencies.size}")
+                    powersString = powersString.plus("$proficiencyString, ")
+                } else {
+                    Log.wtf("index", "value at $index is $proficiencyString")
+                    powersString = powersString.plus("$proficiencyString\n\n")
+                }
+            }
+        }
+        val characterPowers = character!!.characterPowers
+        for ((index, powerOptions) in characterPowers.withIndex()) { //Check the list of all characterPowers against the indexes provided in the currentPowers list
+            val power = powerOptions[character!!.currentPowers[index]] //Get the current power
+            if (!(power.equals("-"))) { //Skip blank powers
+                if (index < (characterPowers.size - 1)) {
+                    powersString = powersString.plus("$power\n\n")
+                } else {
+                    powersString = powersString.plus(powerOptions[character!!.currentPowers[index]]) //Final power to be added does not need extra lines beneath
+                }
+            }
         }
         powers_tv.setText(powersString)
 
