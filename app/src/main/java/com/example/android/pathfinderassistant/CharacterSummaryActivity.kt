@@ -1,0 +1,182 @@
+package com.example.android.pathfinderassistant
+
+import android.content.Intent
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.text.TextUtils.isEmpty
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import com.example.android.pathfinderassistant.Constants.CHARACTER_KEY
+import com.example.android.pathfinderassistant.Constants.DECK_KEY
+import com.example.android.pathfinderassistant.characters.BaseCharacter
+import com.example.android.pathfinderassistant.deck.Card
+import com.example.android.pathfinderassistant.deck.CardListActivity
+import kotlinx.android.synthetic.main.activity_character_summary.*
+
+class CharacterSummaryActivity : AppCompatActivity() {
+
+    var character: BaseCharacter? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_character_summary)
+
+        //Get character
+        character = intent.getParcelableExtra(CHARACTER_KEY)
+        if (character == null) finish()
+
+        title = character!!.characterName
+
+        character!!.deck = arrayListOf(
+            Card(
+                getString(R.string.dazzle_name),
+                getString(R.string.dazzle_descrip)
+            ),
+            Card(
+                getString(R.string.frigid_blast_name),
+                getString(R.string.frigid_blast_descrip)
+            ),
+            Card(
+                getString(R.string.fiery_glare_name),
+                getString(R.string.fiery_glare_descrip)
+            ),
+            Card(
+                getString(R.string.lightning_touch_name),
+                getString(R.string.lightning_touch_descrip)
+            ),
+            Card(
+                getString(R.string.sagacity_name),
+                getString(R.string.sagacity_descrip)
+            ),
+            Card(
+                getString(R.string.magic_padded_armor_name),
+                getString(R.string.magic_padded_armor_descrip)
+            ),
+            Card(
+                getString(R.string.sages_journal_name),
+                getString(R.string.sages_journal_descrip)
+            ),
+            Card(
+                getString(R.string.wand_of_paralyze_name),
+                getString(R.string.wand_of_paralyze_descrip)
+            ),
+            Card(
+                getString(R.string.frog_name),
+                getString(R.string.frog_descrip)
+            ),
+            Card(
+                getString(R.string.teamster_name),
+                getString(R.string.teamster_descrip)
+            ),
+            Card(
+                getString(R.string.apprentice_name),
+                getString(R.string.apprentice_descrip)
+            ),
+            Card(
+                getString(R.string.blessing_of_ascension_name),
+                getString(R.string.blessing_of_ascension_descrip)
+            ),
+            Card(
+                getString(R.string.blessing_of_shax_name),
+                getString(R.string.blessing_of_shax_descrip)
+            )
+        ) //TODO To be removed
+
+        populateViews()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.character_summary_activity_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            R.id.action_launch_card -> {
+                val intent = Intent(this, CardListActivity::class.java)
+                intent.putParcelableArrayListExtra(DECK_KEY, character!!.deck)
+                startActivity(intent)
+                return true
+            }
+            R.id.action_launch_dice -> {
+                val intent = Intent(this, DiceActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+            R.id.action_launch_edit -> {
+                val intent = Intent(this, EditCharacterActivity::class.java)
+                intent.putExtra(CHARACTER_KEY, character)
+                startActivity(intent)
+                finish()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    fun populateViews() {
+        //Set Main Skills section
+        val strengthString = "Strength: ${character!!.characterDice[0]} +${character!!.currentStrengthBonus}"
+        val dexterityString = "Dexterity: ${character!!.characterDice[1]} +${character!!.currentDexterityBonus}"
+        val constitutionString =
+            "Constitution: ${character!!.characterDice[2]} +${character!!.currentConstitutionBonus}"
+        val intelligenceString =
+            "Intelligence: ${character!!.characterDice[3]} +${character!!.currentIntelligenceBonus}"
+        val wisdomString = "Wisdom: ${character!!.characterDice[4]} +${character!!.currentWisdomBonus}"
+        val charismaString = "Charisma: ${character!!.characterDice[5]} +${character!!.currentCharismaBonus}"
+        strength_tv.setText(strengthString)
+        dexterity_tv.setText(dexterityString)
+        constitution_tv.setText(constitutionString)
+        intelligence_tv.setText(intelligenceString)
+        wisdom_tv.setText(wisdomString)
+        charisma_tv.setText(charismaString)
+
+        //Set extra Skills
+        val skillsString = character!!.characterSkills.joinToString("\n")
+        skills_tv.setText(skillsString)
+
+        //Set Powers section
+        var powersString = "Hand Size: ${character!!.currentHandSize}\n\n" //Add Hand Size
+        val proficiencies = character!!.proficiencies //Add proficiencies
+        if (!(proficiencies.isEmpty())) {
+            powersString = powersString.plus("Proficient in: ")
+            for ((index, proficiencyString) in proficiencies.withIndex()) { //Add proficiencies one by one, add space after last proficiency
+                if (index < (proficiencies.size - 1)) {
+                    Log.wtf("index", "value at $index is $proficiencyString")
+                    Log.wtf("size", "${proficiencies.size}")
+                    powersString = powersString.plus("$proficiencyString, ")
+                } else {
+                    Log.wtf("index", "value at $index is $proficiencyString")
+                    powersString = powersString.plus("$proficiencyString\n\n")
+                }
+            }
+        }
+        val characterPowers = character!!.characterPowers
+        for ((index, powerOptions) in characterPowers.withIndex()) { //Check the list of all characterPowers against the indexes provided in the currentPowers list
+            val power = powerOptions[character!!.currentPowers[index]] //Get the current power
+            if (!(power.equals("-"))) { //Skip blank powers
+                if (index < (characterPowers.size - 1)) {
+                    powersString = powersString.plus("$power\n\n")
+                } else {
+                    powersString = powersString.plus(powerOptions[character!!.currentPowers[index]]) //Final power to be added does not need extra lines beneath
+                }
+            }
+        }
+        powers_tv.setText(powersString)
+
+        //Set Cards section
+        val weaponsString = "Weapons: ${character!!.currentWeapons}"
+        val spellsString = "Spells: ${character!!.currentSpells}"
+        val armorsString = "Armors: ${character!!.currentArmors}"
+        val itemsString = "Items: ${character!!.currentItems}"
+        val alliesString = "Allies: ${character!!.currentAllies}"
+        val blessingsString = "Blessings: ${character!!.currentBlessings}"
+        weapons_tv.setText(weaponsString)
+        spells_tv.setText(spellsString)
+        armors_tv.setText(armorsString)
+        items_tv.setText(itemsString)
+        allies_tv.setText(alliesString)
+        blessings_tv.setText(blessingsString)
+    }
+}

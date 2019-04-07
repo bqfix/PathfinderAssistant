@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+            android:id="@+id/action_save_character"
+            android:title="@string/save_character"
+            app:showAsAction="ifRoom"
+            android:icon="@drawable/ic_done"/>
+
+    <item
+            android:id="@+id/action_delete_character"
+            android:title="@string/delete_character"
+            app:showAsAction="never"
+        />
+
+</menu>

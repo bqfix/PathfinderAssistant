@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.example.android.pathfinderassistant.Constants.CARD_KEY
 import com.example.android.pathfinderassistant.DiceActivity
 import com.example.android.pathfinderassistant.R
 
@@ -20,6 +21,8 @@ class CardDetailActivity : AppCompatActivity() {
         //Get card
         card = intent.getParcelableExtra(CARD_KEY)
         if (card == null) finish()
+
+        title = card!!.name
 
         //Setup fragment
         if (detailFragment == null) {

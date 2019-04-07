@@ -3,16 +3,17 @@
 
     <!-- Character Names -->
     <string name="seoni_name" translatable="false">Seoni</string>
+    <string name="imrijka_name" translatable="false">Imrijka</string>
 
     <!-- Character Powers -->
-    <string name="powers">Powers:</string>
+    <string name="character_powers">Powers:</string>
     <string name="seoni_powers">Before your combat check, you may discard a card to draw a card that has the Arcane
         trait from your discard pile.\n\nYou may automatically succeed at your check to recharge a spell that has the
         Attack trait.\n\nWhen you acquire an ally, you may draw a card.
     </string>
 
     <!-- Card Names -->
-    <string name="cards">Cards:</string>
+    <string name="cards_colon">Cards:</string>
     <string name="dazzle_name" translatable="false">Dazzle</string>
     <string name="frigid_blast_name" translatable="false">Frigid Blast</string>
     <string name="fiery_glare_name" translatable="false">Fiery Glare</string>
@@ -96,6 +97,49 @@
     <string name="cannot_decrement_error">Number must not be below 0.</string>
 
     <!-- Attributions -->
-    <string name="dice_icon_source" translatable="false">https://www.kisspng.com/png-computer-icons-clip-art-dice-icon-5720498/</string>
+    <string name="dice_icon_source" translatable="false">
+        https://www.kisspng.com/png-computer-icons-clip-art-dice-icon-5720498/
+    </string>
+
+    <string name="card_icon_source" translatable="false">
+        https://www.kisspng.com/png-one-card-ace-of-spades-playing-card-ace-of-hearts-81849/
+    </string>
+
+    <!-- CharacterSummaryActivity -->
+    <string name="skills">Skills</string>
+    <string name="powers">Powers</string>
+    <string name="cards">Cards</string>
+    <string name="card_menu">Cards</string>
+    <string name="edit_character">Edit</string>
+
+    <!-- AddCharacterActivity -->
+    <string name="select_character">Please select a character:</string>
+
+    <!-- EditCharacterActivity -->
+    <string name="name">Name:</string>
+    <string name="edit_name_hint">Input Name</string>
+    <string name="edit_name_digits">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyk1234567890</string>
+    <string name="subclass">Subclass:</string>
+    <string name="skill_feats">Skill Feats</string>
+    <string name="strength_bonus">Strength:</string>
+    <string name="dexterity_bonus">Dexterity:</string>
+    <string name="constitution_bonus">Constitution:</string>
+    <string name="intelligence_bonus">Intelligence:</string>
+    <string name="wisdom_bonus">Wisdom:</string>
+    <string name="charisma_bonus">Charisma:</string>
+    <string name="power_feats">Power Feats</string>
+    <string name="hand_size">Hand Size: </string>
+    <string name="card_feats">Card Feats</string>
+    <string name="current_weapons">Weapons:</string>
+    <string name="current_spells">Spells:</string>
+    <string name="current_armors">Armors:</string>
+    <string name="current_items">Items:</string>
+    <string name="current_allies">Allies:</string>
+    <string name="current_blessings">Blessings:</string>
+    <string name="save_character">Save</string>
+    <string name="delete_character">Delete</string>
+    <string name="character_saved_confirmation">Character saved.</string>
+    <string name="character_not_deleted">Character not in database.</string>
+    <string name="character_deleted">Character deleted.</string>
 
 </resources>
