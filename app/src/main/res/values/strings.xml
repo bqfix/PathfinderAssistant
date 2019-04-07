@@ -4,6 +4,9 @@
     <!-- Character Names -->
     <string name="seoni_name" translatable="false">Seoni</string>
     <string name="imrijka_name" translatable="false">Imrijka</string>
+    <string name="seelah_name" translatable="false">Seelah</string>
+    <string name="kyra_name" translatable="false">Kyra</string>
+    <string name="enora_name" translatable="false">Enora</string>
 
     <!-- DiceActivity -->
     <string name="dice_menu">Dice</string>
