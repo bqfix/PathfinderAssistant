@@ -29,4 +29,11 @@
             tools:text="For your combat check, discard this card to use your Arcane or Divine skill +2d4.\n\nAfter playing this card, if you do not have either the Arcane or Divine skill, banish it; otherwise, you may succeed at an Arcane 6 or Divine 8 check to recharge this card instead of discarding it."
     />
 
+    <Button
+            android:id="@+id/edit_card_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:text="@string/edit_card_button"/>
+
 </LinearLayout>

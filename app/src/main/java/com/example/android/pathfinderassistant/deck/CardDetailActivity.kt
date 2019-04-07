@@ -27,7 +27,7 @@ class CardDetailActivity : AppCompatActivity() {
         //Setup fragment
         if (detailFragment == null) {
             detailFragment =
-                    CardDetailFragment.newInstance(card!!)
+                    CardDetailFragment.newInstance(card!!, false) //Will never be called in a twopane scenario
         }
         supportFragmentManager.beginTransaction().replace(R.id.carddetail_detailfragment_container, detailFragment!!).commit()
     }

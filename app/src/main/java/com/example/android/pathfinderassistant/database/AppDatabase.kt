@@ -7,7 +7,7 @@ import android.arch.persistence.room.TypeConverters
 import android.content.Context
 import com.example.android.pathfinderassistant.deck.Card
 
-@Database(entities = [CharacterEntry::class, Card::class], version = 2, exportSchema = false)
+@Database(entities = [CharacterEntry::class, Card::class], version = 3, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 

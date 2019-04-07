@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.example.android.pathfinderassistant.Constants
 import com.example.android.pathfinderassistant.Constants.DECK_ID_DEFAULT
 import com.example.android.pathfinderassistant.Constants.DECK_ID_KEY
 import com.example.android.pathfinderassistant.DiceActivity
@@ -33,6 +34,13 @@ class CardListActivity : AppCompatActivity(),
         //Check if in two-pane mode by seeing if the detail container has been inflated
         isTwoPane = (cardlist_detailfragment_container != null)
 
+        //Assign onClick to FAB
+        add_card_fab.setOnClickListener {
+            intent = Intent(this, EditCardActivity::class.java)
+            intent.putExtra(Constants.CARD_KEY, Card(null, deckID, "", ""))
+            startActivity(intent)
+        }
+
         //Populate card list
         if (cardListFragment == null) {
             cardListFragment =
@@ -42,7 +50,7 @@ class CardListActivity : AppCompatActivity(),
     }
 
     override fun onItemClick(card: Card) {
-        cardDetailFragment = CardDetailFragment.newInstance(card)
+        cardDetailFragment = CardDetailFragment.newInstance(card, isTwoPane)
         supportFragmentManager.beginTransaction().replace(R.id.cardlist_detailfragment_container, cardDetailFragment!!).commit()
     }
 

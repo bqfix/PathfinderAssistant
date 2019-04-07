@@ -20,5 +20,5 @@ interface CardDao {
     fun deleteCard(card: Card)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun updateCharacter(characterEntry: CharacterEntry)
+    fun updateCard(card: Card)
 }

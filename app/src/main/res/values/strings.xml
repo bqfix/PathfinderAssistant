@@ -5,16 +5,6 @@
     <string name="seoni_name" translatable="false">Seoni</string>
     <string name="imrijka_name" translatable="false">Imrijka</string>
 
-    <!-- Character Powers -->
-    <string name="character_powers">Powers:</string>
-    <string name="seoni_powers">Before your combat check, you may discard a card to draw a card that has the Arcane
-        trait from your discard pile.\n\nYou may automatically succeed at your check to recharge a spell that has the
-        Attack trait.\n\nWhen you acquire an ally, you may draw a card.
-    </string>
-
-    <!-- Card Names -->
-    <string name="cards_colon">Cards:</string>
-
     <!-- DiceActivity -->
     <string name="dice_menu">Dice</string>
     <string name="d4" translatable="false">d4:</string>
@@ -62,7 +52,7 @@
     <string name="wisdom_bonus">Wisdom:</string>
     <string name="charisma_bonus">Charisma:</string>
     <string name="power_feats">Power Feats</string>
-    <string name="hand_size">Hand Size: </string>
+    <string name="hand_size">Hand Size:</string>
     <string name="card_feats">Card Feats</string>
     <string name="current_weapons">Weapons:</string>
     <string name="current_spells">Spells:</string>
@@ -75,5 +65,18 @@
     <string name="character_saved_confirmation">Character saved.</string>
     <string name="character_not_deleted">Character not in database.</string>
     <string name="character_deleted">Character deleted.</string>
+
+    <!-- EditCardActivity -->
+    <string name="save_card">Save</string>
+    <string name="delete_card">Delete</string>
+    <string name="card_saved_confirmation">Card saved.</string>
+    <string name="card_not_deleted">Card not in database.</string>
+    <string name="card_deleted">Card deleted.</string>
+    <string name="card_name_hint">Card Name</string>
+    <string name="card_descrip_hint">Card Description</string>
+    <string name="enter_card_name">Please Enter a Name.</string>
+
+    <!-- CardDetailFragment -->
+    <string name="edit_card_button">Edit Card</string>
 
 </resources>
