@@ -6,6 +6,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuItem
 import com.example.android.pathfinderassistant.Constants.CHARACTER_KEY
 import com.example.android.pathfinderassistant.database.CharacterDatabaseUtils
 import com.example.android.pathfinderassistant.characters.BaseCharacter
@@ -50,5 +52,21 @@ class MainActivity : AppCompatActivity(), CharacterRecyclerAdapter.CharacterClic
             }
             mAdapter!!.updateCharacters(characters)
          })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_activity_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            R.id.action_launch_dice -> {
+                val intent = Intent(this, DiceActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 }
