@@ -3,14 +3,12 @@ package com.example.android.pathfinderassistant
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.text.TextUtils.isEmpty
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.example.android.pathfinderassistant.Constants.CHARACTER_KEY
-import com.example.android.pathfinderassistant.Constants.DECK_KEY
+import com.example.android.pathfinderassistant.Constants.DECK_ID_KEY
 import com.example.android.pathfinderassistant.characters.BaseCharacter
-import com.example.android.pathfinderassistant.deck.Card
 import com.example.android.pathfinderassistant.deck.CardListActivity
 import kotlinx.android.synthetic.main.activity_character_summary.*
 
@@ -28,61 +26,6 @@ class CharacterSummaryActivity : AppCompatActivity() {
 
         title = character!!.characterName
 
-        character!!.deck = arrayListOf(
-            Card(
-                getString(R.string.dazzle_name),
-                getString(R.string.dazzle_descrip)
-            ),
-            Card(
-                getString(R.string.frigid_blast_name),
-                getString(R.string.frigid_blast_descrip)
-            ),
-            Card(
-                getString(R.string.fiery_glare_name),
-                getString(R.string.fiery_glare_descrip)
-            ),
-            Card(
-                getString(R.string.lightning_touch_name),
-                getString(R.string.lightning_touch_descrip)
-            ),
-            Card(
-                getString(R.string.sagacity_name),
-                getString(R.string.sagacity_descrip)
-            ),
-            Card(
-                getString(R.string.magic_padded_armor_name),
-                getString(R.string.magic_padded_armor_descrip)
-            ),
-            Card(
-                getString(R.string.sages_journal_name),
-                getString(R.string.sages_journal_descrip)
-            ),
-            Card(
-                getString(R.string.wand_of_paralyze_name),
-                getString(R.string.wand_of_paralyze_descrip)
-            ),
-            Card(
-                getString(R.string.frog_name),
-                getString(R.string.frog_descrip)
-            ),
-            Card(
-                getString(R.string.teamster_name),
-                getString(R.string.teamster_descrip)
-            ),
-            Card(
-                getString(R.string.apprentice_name),
-                getString(R.string.apprentice_descrip)
-            ),
-            Card(
-                getString(R.string.blessing_of_ascension_name),
-                getString(R.string.blessing_of_ascension_descrip)
-            ),
-            Card(
-                getString(R.string.blessing_of_shax_name),
-                getString(R.string.blessing_of_shax_descrip)
-            )
-        ) //TODO To be removed
-
         populateViews()
     }
 
@@ -95,7 +38,7 @@ class CharacterSummaryActivity : AppCompatActivity() {
         when (item!!.itemId) {
             R.id.action_launch_card -> {
                 val intent = Intent(this, CardListActivity::class.java)
-                intent.putParcelableArrayListExtra(DECK_KEY, character!!.deck)
+                intent.putExtra(DECK_ID_KEY, character!!.databaseId) //Pass the character's database ID to be cross-referenced later
                 startActivity(intent)
                 return true
             }
@@ -143,11 +86,8 @@ class CharacterSummaryActivity : AppCompatActivity() {
             powersString = powersString.plus("Proficient in: ")
             for ((index, proficiencyString) in proficiencies.withIndex()) { //Add proficiencies one by one, add space after last proficiency
                 if (index < (proficiencies.size - 1)) {
-                    Log.wtf("index", "value at $index is $proficiencyString")
-                    Log.wtf("size", "${proficiencies.size}")
                     powersString = powersString.plus("$proficiencyString, ")
                 } else {
-                    Log.wtf("index", "value at $index is $proficiencyString")
                     powersString = powersString.plus("$proficiencyString\n\n")
                 }
             }

@@ -239,6 +239,7 @@ class EditCharacterActivity : AppCompatActivity() {
             else -> {
                 AppExecutors.getInstance()!!.diskIO.execute {
                     mDatabase!!.characterDao().deleteCharacter(characterEntry)
+                    mDatabase!!.cardDao().deleteCardsByCharacterId(character!!.databaseId!!)
                     finish()
                 }
                 Toast.makeText(this, R.string.character_deleted, Toast.LENGTH_SHORT).show()

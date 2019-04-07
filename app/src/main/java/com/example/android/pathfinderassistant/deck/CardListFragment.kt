@@ -1,5 +1,7 @@
 package com.example.android.pathfinderassistant.deck
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,24 +10,31 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.android.pathfinderassistant.Constants
 import com.example.android.pathfinderassistant.Constants.CARD_KEY
+import com.example.android.pathfinderassistant.MainViewModel
 import com.example.android.pathfinderassistant.R
+import com.example.android.pathfinderassistant.characters.BaseCharacter
+import com.example.android.pathfinderassistant.database.AppDatabase
+import com.example.android.pathfinderassistant.database.CharacterDatabaseUtils
 import kotlinx.android.synthetic.main.fragment_card_list.view.*
 
 
-private const val ARG_CARDS = "cards"
+private const val ARG_DECK_ID = "deckId"
 private const val ARG_ISTWOPANE = "is_two_pane"
 
 class CardListFragment : Fragment(), CardRecyclerAdapter.CardClickHandler {
-    private var cards : List<Card>? = null
+    private var deckId : Int = Constants.DECK_ID_DEFAULT
     private var isTwoPane : Boolean = false
     private var twoPaneClickListener : TwoPaneItemClickListener? = null
+    private var mAdapter : CardRecyclerAdapter? = null
+    private var mDatabase : AppDatabase? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            cards = it.getParcelableArrayList(ARG_CARDS)
+            deckId = it.getInt(ARG_DECK_ID)
             isTwoPane = it.getBoolean(ARG_ISTWOPANE)
         }
     }
@@ -38,12 +47,14 @@ class CardListFragment : Fragment(), CardRecyclerAdapter.CardClickHandler {
         val rootView = inflater.inflate(R.layout.fragment_card_list, container, false)
 
         val layoutManager = LinearLayoutManager(rootView.context, LinearLayoutManager.VERTICAL, false)
-        val recyclerAdapter = CardRecyclerAdapter(this)
+        mAdapter = CardRecyclerAdapter(this)
         val cardListRecyclerView = rootView.cardlistfragment_rv
         cardListRecyclerView.layoutManager = layoutManager
-        cardListRecyclerView.adapter = recyclerAdapter
+        cardListRecyclerView.adapter = mAdapter
 
-        recyclerAdapter.updateCards(cards!!)
+        mDatabase = AppDatabase.getInstance(activity as Context)
+
+        setupViewModel()
 
         return rootView
     }
@@ -56,10 +67,10 @@ class CardListFragment : Fragment(), CardRecyclerAdapter.CardClickHandler {
 
     companion object {
         @JvmStatic
-        fun newInstance(cards : ArrayList<Card>, isTwoPane : Boolean) =
+        fun newInstance(deckId: Int, isTwoPane : Boolean) =
             CardListFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelableArrayList(ARG_CARDS, cards)
+                    putInt(ARG_DECK_ID, deckId)
                     putBoolean(ARG_ISTWOPANE, isTwoPane)
                 }
             }
@@ -79,5 +90,14 @@ class CardListFragment : Fragment(), CardRecyclerAdapter.CardClickHandler {
 
     interface TwoPaneItemClickListener {
         fun onItemClick(card: Card)
+    }
+
+    //Helper to setup viewmodel
+    fun setupViewModel() {
+        val factory = CardViewModelFactory(mDatabase!!, deckId)
+        val viewModel = ViewModelProviders.of(this,factory).get<CardViewModel>(CardViewModel::class.java)
+        viewModel.cards!!.observe(this, Observer { cards ->
+            mAdapter!!.updateCards(cards!!)
+        })
     }
 }

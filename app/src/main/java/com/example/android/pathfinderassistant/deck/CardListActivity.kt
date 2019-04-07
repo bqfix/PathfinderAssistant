@@ -5,7 +5,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import com.example.android.pathfinderassistant.Constants.DECK_KEY
+import com.example.android.pathfinderassistant.Constants.DECK_ID_DEFAULT
+import com.example.android.pathfinderassistant.Constants.DECK_ID_KEY
 import com.example.android.pathfinderassistant.DiceActivity
 import com.example.android.pathfinderassistant.R
 import kotlinx.android.synthetic.main.activity_card_list.*
@@ -22,13 +23,12 @@ class CardListActivity : AppCompatActivity(),
         setContentView(R.layout.activity_card_list)
 
         //Get deck from intent
-        val deck = intent.getParcelableArrayListExtra<Card>(DECK_KEY)
-        if (deck == null) {
+        val deckID = intent.getIntExtra(DECK_ID_KEY, DECK_ID_DEFAULT)
+        if (deckID == DECK_ID_DEFAULT) {
             finish()
         }
 
         title = "Deck"
-
 
         //Check if in two-pane mode by seeing if the detail container has been inflated
         isTwoPane = (cardlist_detailfragment_container != null)
@@ -36,7 +36,7 @@ class CardListActivity : AppCompatActivity(),
         //Populate card list
         if (cardListFragment == null) {
             cardListFragment =
-                    CardListFragment.newInstance(deck, isTwoPane)
+                    CardListFragment.newInstance(deckID, isTwoPane)
         }
         supportFragmentManager.beginTransaction().replace(R.id.cardlist_listfragment_container, cardListFragment!!).commit()
     }
