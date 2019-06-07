@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_dice.*
+import java.lang.NumberFormatException
 import java.util.*
 
 class DiceActivity : AppCompatActivity() {
@@ -23,8 +24,6 @@ class DiceActivity : AppCompatActivity() {
         setDecrementAndIncrementOnClickListeners()
         setResetAllEditTexts()
         setRollAllDice()
-
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -50,15 +49,25 @@ class DiceActivity : AppCompatActivity() {
     // A helper method to decrement and increment an edit text
     fun setDecrementAndIncrementEditText(minusButton: Button, plusButton: Button, editText: EditText) {
         minusButton.setOnClickListener {
-            var editTextValue = editText.text.toString().toInt()
-            if (editTextValue > 0) editTextValue -= 1
-            else Toast.makeText(this, R.string.cannot_decrement_error, Toast.LENGTH_SHORT).show()
-            editText.setText(editTextValue.toString())
+            var editTextValue : Int
+            try {
+                editTextValue = editText.text.toString().toInt()
+                if (editTextValue > 0) editTextValue -= 1
+                else Toast.makeText(this, R.string.cannot_decrement_error, Toast.LENGTH_SHORT).show()
+                editText.setText(editTextValue.toString())
+            } catch (e : NumberFormatException){
+                Toast.makeText(this, R.string.edit_text_blank_error, Toast.LENGTH_SHORT).show()
+            }
         }
         plusButton.setOnClickListener {
-            var editTextValue: Int = editText.text.toString().toInt()
-            editTextValue += 1
-            editText.setText(editTextValue.toString())
+            var editTextValue: Int
+            try {
+                editTextValue = editText.text.toString().toInt()
+                editTextValue += 1
+                editText.setText(editTextValue.toString())
+            } catch (e: NumberFormatException) {
+                Toast.makeText(this, R.string.edit_text_blank_error, Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
@@ -87,10 +96,14 @@ class DiceActivity : AppCompatActivity() {
 
     //A helper method to roll dice for a given EditText
     fun rollDice(editText: EditText, dieSize: Int): Int {
-        val numberOfDice = editText.text.toString().toInt()
-        var total = 0
-        repeat(numberOfDice, { total += (Random().nextInt(dieSize) + 1) })
-        return total
+        try {
+            val numberOfDice = editText.text.toString().toInt()
+            var total = 0
+            repeat(numberOfDice, { total += (Random().nextInt(dieSize) + 1) })
+            return total
+        } catch (e : NumberFormatException) {
+            return 0
+        }
     }
 
     //A helper method to set the onClickListener to roll all dice

@@ -22,6 +22,7 @@
     <string name="roll">Roll Dice</string>
     <string name="total">Total:</string>
     <string name="cannot_decrement_error">Number must not be below 0.</string>
+    <string name="edit_text_blank_error">Please input a number.</string>
 
     <!-- Attributions -->
     <string name="dice_icon_source" translatable="false">
