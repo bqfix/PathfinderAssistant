@@ -12,6 +12,10 @@ import java.util.*
 
 class DiceActivity : AppCompatActivity() {
 
+    val MAX_DICE = 10000
+
+    val TOO_MANY_DICE_ERROR = "Cannot roll more than $MAX_DICE dice at once."
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dice)
@@ -109,17 +113,40 @@ class DiceActivity : AppCompatActivity() {
     //A helper method to set the onClickListener to roll all dice
     fun setRollAllDice() {
         roll_button.setOnClickListener {
-            var grandTotal = 0
-            grandTotal += rollDice(d4_edittext, 4)
-            grandTotal += rollDice(d6_edittext, 6)
-            grandTotal += rollDice(d8_edittext, 8)
-            grandTotal += rollDice(d10_edittext, 10)
-            grandTotal += rollDice(d12_edittext, 12)
-            grandTotal += rollDice(d20_edittext, 20)
+            if (totalDiceLessThanMax()) {
 
-            val grandTotalText = getString(R.string.total) + " $grandTotal"
+                var grandTotal = 0
+                grandTotal += rollDice(d4_edittext, 4)
+                grandTotal += rollDice(d6_edittext, 6)
+                grandTotal += rollDice(d8_edittext, 8)
+                grandTotal += rollDice(d10_edittext, 10)
+                grandTotal += rollDice(d12_edittext, 12)
+                grandTotal += rollDice(d20_edittext, 20)
 
-            total_tv.setText(grandTotalText)
+                val grandTotalText = getString(R.string.total) + " $grandTotal"
+
+                total_tv.setText(grandTotalText)
+            }
+        }
+    }
+
+    //A helper method to check that there aren't an unreasonable number of dice
+    fun totalDiceLessThanMax() : Boolean {
+        val editTexts : List<EditText> = listOf(d4_edittext, d6_edittext, d8_edittext, d10_edittext, d12_edittext, d20_edittext)
+        var totalDice = 0
+        for (editText in editTexts) { //Check that each edit text has an actual number in it
+            try {
+                totalDice += editText.text.toString().toInt()
+            } catch (e : NumberFormatException) {
+                Toast.makeText(this, R.string.edit_text_blank_error, Toast.LENGTH_SHORT).show()
+                return false
+            }
+        }
+        if (totalDice > MAX_DICE) {
+            Toast.makeText(this, TOO_MANY_DICE_ERROR, Toast.LENGTH_SHORT).show()
+            return false
+        } else {
+            return true
         }
     }
 }
