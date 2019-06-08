@@ -3,11 +3,12 @@ package com.example.android.pathfinderassistant
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_dice.*
-import java.lang.NumberFormatException
 import java.util.*
 
 class DiceActivity : AppCompatActivity() {
@@ -28,6 +29,7 @@ class DiceActivity : AppCompatActivity() {
         setDecrementAndIncrementOnClickListeners()
         setResetAllEditTexts()
         setRollAllDice()
+        setOnFocusChangeListeners()
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -53,13 +55,13 @@ class DiceActivity : AppCompatActivity() {
     // A helper method to decrement and increment an edit text
     fun setDecrementAndIncrementEditText(minusButton: Button, plusButton: Button, editText: EditText) {
         minusButton.setOnClickListener {
-            var editTextValue : Int
+            var editTextValue: Int
             try {
                 editTextValue = editText.text.toString().toInt()
                 if (editTextValue > 0) editTextValue -= 1
                 else Toast.makeText(this, R.string.cannot_decrement_error, Toast.LENGTH_SHORT).show()
                 editText.setText(editTextValue.toString())
-            } catch (e : NumberFormatException){
+            } catch (e: NumberFormatException) {
                 Toast.makeText(this, R.string.edit_text_blank_error, Toast.LENGTH_SHORT).show()
             }
         }
@@ -105,7 +107,7 @@ class DiceActivity : AppCompatActivity() {
             var total = 0
             repeat(numberOfDice, { total += (Random().nextInt(dieSize) + 1) })
             return total
-        } catch (e : NumberFormatException) {
+        } catch (e: NumberFormatException) {
             return 0
         }
     }
@@ -131,13 +133,14 @@ class DiceActivity : AppCompatActivity() {
     }
 
     //A helper method to check that there aren't an unreasonable number of dice
-    fun totalDiceLessThanMax() : Boolean {
-        val editTexts : List<EditText> = listOf(d4_edittext, d6_edittext, d8_edittext, d10_edittext, d12_edittext, d20_edittext)
+    fun totalDiceLessThanMax(): Boolean {
+        val editTexts: List<EditText> =
+            listOf(d4_edittext, d6_edittext, d8_edittext, d10_edittext, d12_edittext, d20_edittext)
         var totalDice = 0
         for (editText in editTexts) { //Check that each edit text has an actual number in it
             try {
                 totalDice += editText.text.toString().toInt()
-            } catch (e : NumberFormatException) {
+            } catch (e: NumberFormatException) {
                 Toast.makeText(this, R.string.edit_text_blank_error, Toast.LENGTH_SHORT).show()
                 return false
             }
@@ -147,6 +150,19 @@ class DiceActivity : AppCompatActivity() {
             return false
         } else {
             return true
+        }
+    }
+
+    fun hideKeyboard(view: View) {
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    fun setOnFocusChangeListeners() {
+        val editTexts: List<EditText> =
+            listOf(d4_edittext, d6_edittext, d8_edittext, d10_edittext, d12_edittext, d20_edittext)
+        for (editText in editTexts) {
+            editText.setOnFocusChangeListener { v, hasFocus -> if (!hasFocus) hideKeyboard(v) }
         }
     }
 }

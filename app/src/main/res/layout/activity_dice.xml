@@ -7,7 +7,10 @@
         android:layout_height="match_parent"
         tools:context=".DiceActivity"
         android:orientation="vertical"
-        android:background="@color/colorBackground">
+        android:background="@color/colorBackground"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:clickable="true">
 
 
     <LinearLayout
