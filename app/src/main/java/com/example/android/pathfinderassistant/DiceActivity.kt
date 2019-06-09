@@ -114,7 +114,7 @@ class DiceActivity : AppCompatActivity() {
 
     //A helper method to set the onClickListener to roll all dice
     fun setRollAllDice() {
-        roll_button.setOnClickListener {
+        dice_buttons_roll_button.setOnClickListener {
             if (totalDiceLessThanMax()) {
 
                 var grandTotal = 0
