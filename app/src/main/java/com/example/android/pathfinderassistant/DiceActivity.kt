@@ -1,6 +1,8 @@
 package com.example.android.pathfinderassistant
 
+import android.content.Context
 import android.os.Bundle
+import android.support.v4.util.Pair
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
@@ -114,6 +116,7 @@ class DiceActivity : AppCompatActivity() {
 
     //A helper method to set the onClickListener to roll all dice
     fun setRollAllDice() {
+        //Logic for buttons version
         dice_buttons_roll_button.setOnClickListener {
             if (totalDiceLessThanMax()) {
 
@@ -129,6 +132,65 @@ class DiceActivity : AppCompatActivity() {
 
                 total_tv.setText(grandTotalText)
             }
+        }
+
+        //Logic for typing version
+        dice_input_roll_button.setOnClickListener {
+            if (isValidDiceRoll(command_input_et.text.toString())){ //Only continue if the input is parseable, else the isValidDiceRoll method will show an error
+                
+            }
+        }
+    }
+
+    /** A helper method that checks if a given formula will be valid
+     *
+     * @param formula to be checked
+     * @return  a Boolean of whether the formula is valid or not.
+     */
+    fun isValidDiceRoll(formula: String): Boolean {
+        if (!formula.matches("[0123456789dD +-]+".toRegex())) { //Check that the formula contains exclusively numbers, d, D, or +/-
+            Toast.makeText(this, R.string.invalid_characters, Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        var totalDice = 0
+        val splitFormulaByPlusMinus = formula.trim().split("[+-]".toRegex()).dropLastWhile { it.isEmpty() }
+            .toTypedArray() //Split the formula by + and -
+        for (splitSection in splitFormulaByPlusMinus) {
+            val splitFormulaByD = splitSection.trim().split("[dD]".toRegex())
+                .toTypedArray() //Further split each section by whether there is a d or D, -1 limit provided to force inclusion of empty strings for subsequent length parsing (in the event of multiple ds)
+            when (splitFormulaByD.size) {
+                //Each section should only be 2 numbers long (meaning the numbers can be multiplied) or 1 number long
+                2 -> {
+                    for (potentialNumber in splitFormulaByD) { //Confirm that each number is valid
+                        try {
+                            Integer.parseInt(potentialNumber.trim())
+                        } catch (e: NumberFormatException) {
+                            Toast.makeText(this, R.string.incorrectly_formatted_section, Toast.LENGTH_SHORT).show()
+                            return false
+                        }
+                    }
+                    totalDice += Integer.parseInt(splitFormulaByD[0].trim())  //If both numbers were valid, add the first number (which will be the number of dice) to totalDice
+                }
+                1 -> {
+                    try { //Confirm that the number is valid
+                        Integer.parseInt(splitFormulaByD[0].trim())
+                    } catch (e: NumberFormatException) {
+                        Toast.makeText(this, R.string.incorrectly_formatted_section, Toast.LENGTH_SHORT).show()
+                        return false
+                    }
+                }
+                else -> {
+                    Toast.makeText(this, R.string.incorrectly_formatted_section, Toast.LENGTH_SHORT).show()
+                    return false
+                }
+            }
+        }
+        if (totalDice >= MAX_DICE) { //This is to prevent exceptionally large rolls that may lock down the app
+            Toast.makeText(this, R.string.too_many_dice, Toast.LENGTH_SHORT).show()
+            return false
+        } else {
+            return true
         }
     }
 
@@ -160,7 +222,7 @@ class DiceActivity : AppCompatActivity() {
 
     fun setOnFocusChangeListeners() {
         val editTexts: List<EditText> =
-            listOf(d4_edittext, d6_edittext, d8_edittext, d10_edittext, d12_edittext, d20_edittext)
+            listOf(d4_edittext, d6_edittext, d8_edittext, d10_edittext, d12_edittext, d20_edittext, command_input_et)
         for (editText in editTexts) {
             editText.setOnFocusChangeListener { v, hasFocus -> if (!hasFocus) hideKeyboard(v) }
         }
