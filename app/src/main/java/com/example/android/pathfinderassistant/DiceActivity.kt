@@ -2,6 +2,7 @@ package com.example.android.pathfinderassistant
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -31,6 +32,24 @@ class DiceActivity : AppCompatActivity() {
         setResetAllEditTexts()
         setRollAllDice()
         setOnFocusChangeListeners()
+
+        if (savedInstanceState != null) {
+            //Restore each EditText's input
+            d4_edittext.setText(savedInstanceState.getString(getString(R.string.d4_et_key)))
+            d6_edittext.setText(savedInstanceState.getString(getString(R.string.d6_et_key)))
+            d8_edittext.setText(savedInstanceState.getString(getString(R.string.d8_et_key)))
+            d10_edittext.setText(savedInstanceState.getString(getString(R.string.d10_et_key)))
+            d12_edittext.setText(savedInstanceState.getString(getString(R.string.d12_et_key)))
+            d20_edittext.setText(savedInstanceState.getString(getString(R.string.d20_et_key)))
+            command_input_et.setText(savedInstanceState.getString(getString(R.string.formula_et_key)))
+
+            //Restore correct layout
+            val wasButtonInputVisible = savedInstanceState.getBoolean(getString(R.string.is_button_input_visible_key))
+            if (wasButtonInputVisible) { //If was in button mode, take steps to restore to button mode.  Else, default behavior handles this.
+                dice_button_constraint_layout.visibility = View.VISIBLE
+                dice_input_constraint_layout.visibility = View.GONE
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -319,5 +338,22 @@ class DiceActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.dice_activity_menu, menu)
         return true
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+
+        //Put state of each EditText
+        outState!!.putString(getString(R.string.d4_et_key), d4_edittext.text.toString())
+        outState.putString(getString(R.string.d6_et_key), d6_edittext.text.toString())
+        outState.putString(getString(R.string.d8_et_key), d8_edittext.text.toString())
+        outState.putString(getString(R.string.d10_et_key), d10_edittext.text.toString())
+        outState.putString(getString(R.string.d12_et_key), d12_edittext.text.toString())
+        outState.putString(getString(R.string.d20_et_key), d20_edittext.text.toString())
+        outState.putString(getString(R.string.formula_et_key), command_input_et.text.toString())
+
+        //Put which layout is visible
+        val isButtonInputVisible = dice_button_constraint_layout.visibility == View.VISIBLE
+        outState.putBoolean(getString(R.string.is_button_input_visible_key), isButtonInputVisible)
     }
 }

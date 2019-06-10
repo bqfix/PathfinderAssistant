@@ -30,6 +30,14 @@
     <string name="invalid_characters">Error: Input contains invalid characters.</string>
     <string name="incorrectly_formatted_section">Error: A section is incorrectly formatted. </string>
     <string name="no_error">No errors.</string>
+    <string name="d4_et_key">d4_et_key</string>
+    <string name="d6_et_key">d6_et_key</string>
+    <string name="d8_et_key">d8_et_key</string>
+    <string name="d10_et_key">d10_et_key</string>
+    <string name="d12_et_key">d12_et_key</string>
+    <string name="d20_et_key">d20_et_key</string>
+    <string name="formula_et_key">formula_et_key</string>
+    <string name="is_button_input_visible_key">is_button_input_visible_key</string>
 
     <!-- Attributions -->
     <string name="dice_icon_source" translatable="false">
