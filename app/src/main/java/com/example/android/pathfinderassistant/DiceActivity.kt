@@ -1,8 +1,6 @@
 package com.example.android.pathfinderassistant
 
-import android.content.Context
 import android.os.Bundle
-import android.support.v4.util.Pair
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
@@ -136,8 +134,10 @@ class DiceActivity : AppCompatActivity() {
 
         //Logic for typing version
         dice_input_roll_button.setOnClickListener {
-            if (isValidDiceRoll(command_input_et.text.toString())){ //Only continue if the input is parseable, else the isValidDiceRoll method will show an error
-                
+            val formula = command_input_et.text.toString()
+            if (isValidDiceRoll(formula)) { //Only continue if the input is parseable, else the isValidDiceRoll method will show an error
+                val total = getString(R.string.total) + " ${rollFormula(formula)}"
+                total_tv.setText(total)
             }
         }
     }
@@ -164,17 +164,17 @@ class DiceActivity : AppCompatActivity() {
                 2 -> {
                     for (potentialNumber in splitFormulaByD) { //Confirm that each number is valid
                         try {
-                            Integer.parseInt(potentialNumber.trim())
+                            potentialNumber.trim().toInt()
                         } catch (e: NumberFormatException) {
                             Toast.makeText(this, R.string.incorrectly_formatted_section, Toast.LENGTH_SHORT).show()
                             return false
                         }
                     }
-                    totalDice += Integer.parseInt(splitFormulaByD[0].trim())  //If both numbers were valid, add the first number (which will be the number of dice) to totalDice
+                    totalDice += splitFormulaByD[0].trim().toInt() //If both numbers were valid, add the first number (which will be the number of dice) to totalDice
                 }
                 1 -> {
                     try { //Confirm that the number is valid
-                        Integer.parseInt(splitFormulaByD[0].trim())
+                        splitFormulaByD[0].trim().toInt()
                     } catch (e: NumberFormatException) {
                         Toast.makeText(this, R.string.incorrectly_formatted_section, Toast.LENGTH_SHORT).show()
                         return false
@@ -187,12 +187,75 @@ class DiceActivity : AppCompatActivity() {
             }
         }
         if (totalDice >= MAX_DICE) { //This is to prevent exceptionally large rolls that may lock down the app
-            Toast.makeText(this, R.string.too_many_dice, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, TOO_MANY_DICE_ERROR, Toast.LENGTH_SHORT).show()
             return false
         } else {
             return true
         }
     }
+
+    /** A method that randomizes numbers based off of the input formula.
+     *
+     * @return The total
+     */
+    fun rollFormula(formula: String): Int {
+        var grandTotal = 0
+        val splitFormulaByD = ArrayList<Array<String>>()
+
+        //Create a list of plusses and minuses for referencing
+        val plussesAndMinuses = ArrayList<String>()
+        plussesAndMinuses.add("+") //First value in formula must always be positive
+        for (index in 0 until formula.length) {
+            val currentCharacter = formula.get(index).toString()
+            if (currentCharacter == "+" || currentCharacter == "-") { //If a character in the formula is + or -, append it to the list
+                plussesAndMinuses.add(currentCharacter)
+            }
+        }
+
+
+        val splitFormulaByPlusMinus = formula.trim().split("[+-]".toRegex()).dropLastWhile({ it.isEmpty() })
+            .toTypedArray() //Split formula based on + and -
+        for (section in splitFormulaByPlusMinus) {
+            val trimmedSection = section.trim()
+            splitFormulaByD.add(trimmedSection.split("[dD]".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()) //Add each trimmed section to the ArrayList, splitting it by d or D if applicable
+        }
+
+        for (index in splitFormulaByD.indices) {
+            val splitRoll = splitFormulaByD[index]
+            val positive = plussesAndMinuses.get(index) == "+" //Cross reference with plussesAndMinuses to determine if positive or negative
+
+            if (splitRoll.size == 2) { //If the size is 2, it was delineated by d or D, and thus we know that the first value is the numberOfDice, and the second value is the dieSize
+                val numberOfDice = splitRoll[0].trim().toInt()
+                val dieSize = splitRoll[1].trim().toInt()
+                val randomizer = Random()
+                val answerIsZero = numberOfDice == 0 || dieSize == 0
+
+                if (!answerIsZero) {
+                    for (currentDieNumber in 1..numberOfDice) { //Iterate through a number of times equal to the remaining dice, repeating the append and adding to total
+                        val roll = randomizer.nextInt(dieSize) + 1
+
+                        if (positive) { //Add or subtract accordingly
+                            grandTotal += roll
+                        } else { //Negative
+                            grandTotal -= roll
+                        }
+                    }
+                }
+            }
+
+            if (splitRoll.size == 1) { //If the length is one, simply append the number and add or subtract accordingly
+                val number = splitRoll[0].trim().toInt()
+                if (positive) {
+                    grandTotal += number
+                } else { //Negative
+                    grandTotal -= number
+                }
+            }
+        }
+
+        return grandTotal
+    }
+
 
     //A helper method to check that there aren't an unreasonable number of dice
     fun totalDiceLessThanMax(): Boolean {
@@ -222,7 +285,15 @@ class DiceActivity : AppCompatActivity() {
 
     fun setOnFocusChangeListeners() {
         val editTexts: List<EditText> =
-            listOf(d4_edittext, d6_edittext, d8_edittext, d10_edittext, d12_edittext, d20_edittext, command_input_et)
+            listOf(
+                d4_edittext,
+                d6_edittext,
+                d8_edittext,
+                d10_edittext,
+                d12_edittext,
+                d20_edittext,
+                command_input_et
+            )
         for (editText in editTexts) {
             editText.setOnFocusChangeListener { v, hasFocus -> if (!hasFocus) hideKeyboard(v) }
         }
