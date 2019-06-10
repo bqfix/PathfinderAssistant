@@ -25,6 +25,7 @@
     <string name="edit_text_blank_error">Please input a number.</string>
     <string name="command_input_hint">Input a command.</string>
     <string name="switch_input_type">Switch Input</string>
+    <string name="help_formula_advice">Formula must include only numbers, spaces, + and &#8211; symbols, and the letter \'d\'.  First section must NOT be negative.  Examples include:\n\n6\n1d6\n2d8 &#8211; 1\n1d4&#8211;1d4+1d4&#8211;1d4</string> <!-- &#8211; is for en dash -->
     <!-- Formula Errors -->
     <string name="invalid_characters">Error: Input contains invalid characters.</string>
     <string name="incorrectly_formatted_section">Error: A section is incorrectly formatted. </string>
