@@ -24,6 +24,7 @@
     <string name="cannot_decrement_error">Number must not be below 0.</string>
     <string name="edit_text_blank_error">Please input a number.</string>
     <string name="command_input_hint">Input a command.</string>
+    <string name="switch_input_type">Switch Input</string>
     <!-- Formula Errors -->
     <string name="invalid_characters">Error: Input contains invalid characters.</string>
     <string name="incorrectly_formatted_section">Error: A section is incorrectly formatted. </string>

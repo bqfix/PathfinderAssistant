@@ -2,6 +2,7 @@ package com.example.android.pathfinderassistant
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -38,7 +39,23 @@ class DiceActivity : AppCompatActivity() {
                 onBackPressed()
                 return true
             }
+            R.id.action_swap_input -> {
+                swapInputTypes()
+                return true
+            }
             else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    //A helper method to swap between input methods
+    fun swapInputTypes() {
+        val isButtonInput = dice_button_constraint_layout.visibility == View.VISIBLE //Check if the button input type is currently visible
+        if (isButtonInput) {
+            dice_button_constraint_layout.visibility = View.GONE
+            dice_input_constraint_layout.visibility = View.VISIBLE
+        } else {
+            dice_button_constraint_layout.visibility = View.VISIBLE
+            dice_input_constraint_layout.visibility = View.GONE
         }
     }
 
@@ -297,5 +314,10 @@ class DiceActivity : AppCompatActivity() {
         for (editText in editTexts) {
             editText.setOnFocusChangeListener { v, hasFocus -> if (!hasFocus) hideKeyboard(v) }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.dice_activity_menu, menu)
+        return true
     }
 }
