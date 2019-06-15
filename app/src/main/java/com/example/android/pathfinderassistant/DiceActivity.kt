@@ -16,6 +16,7 @@ import java.util.*
 class DiceActivity : AppCompatActivity() {
 
     val MAX_DICE = 10000
+    val MAX_SIZE_DICE = 10000
 
     val TOO_MANY_DICE_ERROR = "Cannot roll more than $MAX_DICE dice at once."
 
@@ -190,17 +191,21 @@ class DiceActivity : AppCompatActivity() {
         }
 
         var totalDice = 0
-        val splitFormulaByPlusMinus = formula.trim().split("[+-]".toRegex()).dropLastWhile { it.isEmpty() }
+        val splitFormulaByPlusMinus = formula.trim().split("[+-]".toRegex()) //Does not drop empty strings
             .toTypedArray() //Split the formula by + and -
         for (splitSection in splitFormulaByPlusMinus) {
             val splitFormulaByD = splitSection.trim().split("[dD]".toRegex())
-                .toTypedArray() //Further split each section by whether there is a d or D, -1 limit provided to force inclusion of empty strings for subsequent length parsing (in the event of multiple ds)
+                .toTypedArray() //Further split each section by whether there is a d or D, does not drop empty strings
             when (splitFormulaByD.size) {
                 //Each section should only be 2 numbers long (meaning the numbers can be multiplied) or 1 number long
                 2 -> {
                     for (potentialNumber in splitFormulaByD) { //Confirm that each number is valid
                         try {
-                            potentialNumber.trim().toInt()
+                            val number = potentialNumber.trim().toInt()
+                            if (number > MAX_SIZE_DICE) { //If valid number is overly large, consider it invalid
+                                Toast.makeText(this, R.string.incorrectly_formatted_section, Toast.LENGTH_SHORT).show()
+                                return false
+                            }
                         } catch (e: NumberFormatException) {
                             Toast.makeText(this, R.string.incorrectly_formatted_section, Toast.LENGTH_SHORT).show()
                             return false
@@ -210,7 +215,11 @@ class DiceActivity : AppCompatActivity() {
                 }
                 1 -> {
                     try { //Confirm that the number is valid
-                        splitFormulaByD[0].trim().toInt()
+                        val number = splitFormulaByD[0].trim().toInt()
+                        if (number > MAX_SIZE_DICE) { //If valid number is overly large, consider it invalid
+                            Toast.makeText(this, R.string.incorrectly_formatted_section, Toast.LENGTH_SHORT).show()
+                            return false
+                        }
                     } catch (e: NumberFormatException) {
                         Toast.makeText(this, R.string.incorrectly_formatted_section, Toast.LENGTH_SHORT).show()
                         return false
